@@ -1,0 +1,29 @@
+Oss and Good method
+The Oss and Good acid-base method is a method for calculating the surface free energy of a solid from the contact angle with several liquids.
+In doing so, the surface free energy is divided into a disperse part along with a Lewis acid part and a Lewis base part.
+
+Background
+According to Young’s equation, there is a relationship between the contact angle θ, the surface tension of the liquid σl,
+the interfacial tension σsl between liquid and solid and the surface free energy σs of the solid:
+
+In order to be able to calculate the surface free energy from the contact angle, the second unknown variable σsl must be determined.
+The interfacial tension σsl is calculated based on the two surface tensions σs and σl and the interactions between the phases.
+These interactions are interpreted as the geometric mean of a disperse part σD and the corresponding acid parts σ+ and base parts σ-
+of the surface tension or surface free energy.
+
+
+According to the Lewis acid-base theory, polar interactions take place when an electron acceptor (+) impinges on an electron donor (-).
+The geometric mean is accordingly formed from the respectively opposing parts.
+
+
+At least three liquids are required to determine the surface free energy of the solid: a purely dispersive liquid and two liquids with known acid and base parts.
+As the neutral point in the Lewis scale, water should be used in all cases.
+
+
+
+
+
+Bibliography
+R. J. Good; C. J. van Oss, The Modern Theory of Contact Angles and the Hydrogen bond Components of Surface Energies. In: G. I. Loeb; M. E. Schrader (Hrg.): Modern approaches to wettability. 1992, P. 1-27.
+R. J. Good, Contact Angle, Wetting and Adhesion: a Critical Review. In: K. L. Mittal (Hrg.): Contact Angle, Wettability and Adhesion. Festschrift in Honor of Professor Robert J. Good. Utrecht 1993, P. 3-36.
+C. J. van Oss; M. K. Chaudhury; R. J. Good, Interfacial Lifschitz-van der Waals and Polar Interactions in Macroscopic Systems. In: J. Chem. Rev. 88 (1988), P. 927-941.

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1045</width>
-    <height>528</height>
+    <width>1085</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,32 +23,25 @@ QMainWindow{
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>1009</width>
-      <height>482</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QFrame" name="ButtonsFrame">
-       <property name="minimumSize">
-        <size>
-         <width>140</width>
-         <height>480</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>200</width>
-         <height>16377</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QFrame" name="ButtonsFrame">
+        <property name="minimumSize">
+         <size>
+          <width>140</width>
+          <height>480</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>16377</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
 	color: rgb(250, 120, 255);
     background-color: grey;
     border-style: outset;
@@ -68,154 +61,174 @@ QFrame{
 	border-radius: 25px;
 }
 </string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="0">
-         <widget class="QPushButton" name="settingsButton">
-          <property name="minimumSize">
-           <size>
-            <width>158</width>
-            <height>120</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>SETTINGS</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="autoExclusive">
-           <bool>true</bool>
-          </property>
-          <property name="default">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="theoryButton">
-          <property name="minimumSize">
-           <size>
-            <width>158</width>
-            <height>120</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>READ THEORY </string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="autoExclusive">
-           <bool>true</bool>
-          </property>
-          <property name="autoDefault">
-           <bool>false</bool>
-          </property>
-          <property name="default">
-           <bool>false</bool>
-          </property>
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="measurmentButton">
-          <property name="minimumSize">
-           <size>
-            <width>158</width>
-            <height>120</height>
-           </size>
-          </property>
-          <property name="sizeIncrement">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>MEASURMENT</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="autoExclusive">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QFrame" name="MainFrame">
-       <property name="minimumSize">
-        <size>
-         <width>700</width>
-         <height>480</height>
-        </size>
-       </property>
-       <property name="toolTipDuration">
-        <number>1</number>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QFrame{
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="1" column="0">
+          <widget class="QPushButton" name="settingsButton">
+           <property name="minimumSize">
+            <size>
+             <width>158</width>
+             <height>120</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>SETTINGS</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="theoryButton">
+           <property name="minimumSize">
+            <size>
+             <width>158</width>
+             <height>120</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>READ THEORY </string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="measurmentButton">
+           <property name="minimumSize">
+            <size>
+             <width>158</width>
+             <height>120</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>MEASURMENT</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QFrame" name="MainFrame">
+        <property name="minimumSize">
+         <size>
+          <width>700</width>
+          <height>480</height>
+         </size>
+        </property>
+        <property name="toolTipDuration">
+         <number>1</number>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QFrame{
 	backgroundcolor: rgb(255, 255, 0)}</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QFrame" name="frame">
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,10" columnstretch="4,7">
-           <item row="0" column="1">
-            <widget class="QComboBox" name="theoryCombobox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>606</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QComboBox {
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QFrame" name="innerMainFrame">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,10" columnstretch="4,1">
+            <item row="0" column="0">
+             <widget class="QLabel" name="ctywLabel">
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(250, 120, 255);
+	background-color: rgb(80, 80, 80);
+	border-radius: 10px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Choose Theory You Want</string>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="theoryCombobox">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>606</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
     border: 1px solid gray;
     border-radius: 10px;
     padding: 5px 2px 5px 2px;
@@ -231,72 +244,54 @@ border-radius: 2px;
 }
 
 </string>
-             </property>
-             <property name="insertPolicy">
-              <enum>QComboBox::InsertAtBottom</enum>
-             </property>
-             <item>
-              <property name="text">
-               <string>Van-Oss</string>
               </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Zeisman</string>
+              <property name="insertPolicy">
+               <enum>QComboBox::InsertAtBottom</enum>
               </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Groompler</string>
+              <item>
+               <property name="text">
+                <string>Van-Oss</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Zeisman</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Groompler</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QFrame" name="theorysFrame">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="ctywLabel">
-             <property name="styleSheet">
-              <string notr="true">QLabel{
-	color:rgb(250, 120, 255);
-	background-color: rgb(80, 80, 80);
-	border-radius: 10px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Choose Theory You Want</string>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="2">
-            <widget class="QFrame" name="frame_2">
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+              <layout class="QGridLayout" name="gridLayout_5"/>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1045</width>
+     <width>1085</width>
      <height>26</height>
     </rect>
    </property>
