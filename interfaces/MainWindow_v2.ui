@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1085</width>
-    <height>610</height>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,6 +90,9 @@ QFrame{
             <bool>true</bool>
            </property>
            <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
             <bool>false</bool>
            </property>
           </widget>
@@ -197,6 +200,7 @@ QFrame{
 	color:rgb(250, 120, 255);
 	background-color: rgb(80, 80, 80);
 	border-radius: 10px;
+	font: bold, 14px
 }</string>
               </property>
               <property name="text">
@@ -233,6 +237,7 @@ QFrame{
     border-radius: 10px;
     padding: 5px 2px 5px 2px;
     min-width: 600px;
+	font: bold, 14px;
 }
 QComboBox::drop-down {
     border: 0px;
@@ -273,6 +278,9 @@ border-radius: 2px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius: 15px</string>
+              </property>
               <layout class="QGridLayout" name="gridLayout_5"/>
              </widget>
             </item>
@@ -283,6 +291,9 @@ border-radius: 2px;
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="resultGridLayout"/>
     </item>
    </layout>
   </widget>
