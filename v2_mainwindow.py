@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1085, 609)
+        MainWindow.resize(1246, 608)
         MainWindow.setStyleSheet("QFrame{\n"
 "    background-color: rgb(120, 120, 120);\n"
 "    border-radius: 25px;\n"
@@ -89,7 +89,17 @@ class Ui_MainWindow(object):
         self.MainFrame.setMinimumSize(QtCore.QSize(700, 480))
         self.MainFrame.setToolTipDuration(1)
         self.MainFrame.setStyleSheet("QFrame{\n"
-"    backgroundcolor: rgb(255, 255, 0)}")
+"    backgroundcolor: rgb(255, 255, 0)}\n"
+"QComboBox {\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 10px;\n"
+"    padding: 5px 2px 5px 2px;\n"
+"    min-width: 300px;\n"
+"    font: bold, 14px;\n"
+"}\n"
+"QComboBox::drop-down {\n"
+"    border: 0px;\n"
+"}")
         self.MainFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.MainFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.MainFrame.setObjectName("MainFrame")
@@ -105,6 +115,8 @@ class Ui_MainWindow(object):
         self.ctywLabel.setStyleSheet("QLabel{\n"
 "    color:rgb(250, 120, 255);\n"
 "    background-color: rgb(80, 80, 80);\n"
+"    min-width: 220px;\n"
+"    max-width:250px;\n"
 "    border-radius: 10px;\n"
 "    font: bold, 14px\n"
 "}")
@@ -118,23 +130,15 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.theoryCombobox.sizePolicy().hasHeightForWidth())
         self.theoryCombobox.setSizePolicy(sizePolicy)
-        self.theoryCombobox.setMinimumSize(QtCore.QSize(606, 30))
+        self.theoryCombobox.setMinimumSize(QtCore.QSize(306, 30))
+        self.theoryCombobox.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.theoryCombobox.setAutoFillBackground(False)
-        self.theoryCombobox.setStyleSheet("QComboBox {\n"
-"    border: 1px solid gray;\n"
-"    border-radius: 10px;\n"
-"    padding: 5px 2px 5px 2px;\n"
-"    min-width: 600px;\n"
-"    font: bold, 14px;\n"
+        self.theoryCombobox.setStyleSheet("QFrame{\n"
+"    background-color: rgb(255,255,255);\n"
+"    border-radius: 2px;\n"
 "}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px;\n"
-"}\n"
-"QFrame{\n"
-"background-color: rgb(255,255,255);\n"
-"border-radius: 2px;\n"
-"\n"
-"}\n"
+"QComboBox{\n"
+"    max-width:450px}\n"
 "\n"
 "")
         self.theoryCombobox.setInsertPolicy(QtWidgets.QComboBox.InsertAtBottom)
@@ -143,6 +147,22 @@ class Ui_MainWindow(object):
         self.theoryCombobox.addItem("")
         self.theoryCombobox.addItem("")
         self.gridLayout_4.addWidget(self.theoryCombobox, 0, 1, 1, 1)
+        self.tempCombobox = QtWidgets.QComboBox(self.innerMainFrame)
+        self.tempCombobox.setStyleSheet("QComboBox{\n"
+"    min-width: 50px;\n"
+"    max-width: 100px\n"
+"}\n"
+"QFrame{\n"
+"    background-color: white;\n"
+"}")
+        self.tempCombobox.setObjectName("tempCombobox")
+        self.tempCombobox.addItem("")
+        self.tempCombobox.addItem("")
+        self.tempCombobox.addItem("")
+        self.tempCombobox.addItem("")
+        self.tempCombobox.addItem("")
+        self.tempCombobox.addItem("")
+        self.gridLayout_4.addWidget(self.tempCombobox, 0, 3, 1, 1)
         self.theorysFrame = QtWidgets.QFrame(self.innerMainFrame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -153,12 +173,25 @@ class Ui_MainWindow(object):
         self.theorysFrame.setObjectName("theorysFrame")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.theorysFrame)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.gridLayout_4.addWidget(self.theorysFrame, 1, 0, 1, 2)
+        self.gridLayout_4.addWidget(self.theorysFrame, 1, 0, 1, 4)
+        self.tempLabel = QtWidgets.QLabel(self.innerMainFrame)
+        self.tempLabel.setStyleSheet("QLabel{\n"
+"    color:rgb(250, 120, 255);\n"
+"    background-color: rgb(80, 80, 80);\n"
+"    min-width: 240px;\n"
+"    max-width:250px;\n"
+"    border-radius: 10px;\n"
+"    font: bold, 14px\n"
+"}")
+        self.tempLabel.setScaledContents(True)
+        self.tempLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.tempLabel.setObjectName("tempLabel")
+        self.gridLayout_4.addWidget(self.tempLabel, 0, 2, 1, 1)
         self.gridLayout_4.setColumnStretch(0, 4)
         self.gridLayout_4.setColumnStretch(1, 1)
         self.gridLayout_4.setRowStretch(0, 1)
         self.gridLayout_4.setRowStretch(1, 10)
-        self.gridLayout_3.addWidget(self.innerMainFrame, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.innerMainFrame, 1, 0, 1, 1)
         self.gridLayout_2.addWidget(self.MainFrame, 0, 1, 1, 1)
         self.gridLayout_6.addLayout(self.gridLayout_2, 0, 0, 1, 1)
         self.resultGridLayout = QtWidgets.QGridLayout()
@@ -166,7 +199,7 @@ class Ui_MainWindow(object):
         self.gridLayout_6.addLayout(self.resultGridLayout, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1085, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1246, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -182,10 +215,17 @@ class Ui_MainWindow(object):
         self.settingsButton.setText(_translate("MainWindow", "SETTINGS"))
         self.theoryButton.setText(_translate("MainWindow", "READ THEORY "))
         self.measurmentButton.setText(_translate("MainWindow", "MEASURMENT"))
-        self.ctywLabel.setText(_translate("MainWindow", "Choose Theory You Want"))
+        self.ctywLabel.setText(_translate("MainWindow", "Choose Theory You Want =>"))
         self.theoryCombobox.setItemText(0, _translate("MainWindow", "Van-Oss"))
         self.theoryCombobox.setItemText(1, _translate("MainWindow", "Zeisman"))
         self.theoryCombobox.setItemText(2, _translate("MainWindow", "Groompler"))
+        self.tempCombobox.setItemText(0, _translate("MainWindow", "23"))
+        self.tempCombobox.setItemText(1, _translate("MainWindow", "24"))
+        self.tempCombobox.setItemText(2, _translate("MainWindow", "25"))
+        self.tempCombobox.setItemText(3, _translate("MainWindow", "26"))
+        self.tempCombobox.setItemText(4, _translate("MainWindow", "27"))
+        self.tempCombobox.setItemText(5, _translate("MainWindow", "28"))
+        self.tempLabel.setText(_translate("MainWindow", "Chose Temperature You Want =>"))
 
 
 if __name__ == "__main__":

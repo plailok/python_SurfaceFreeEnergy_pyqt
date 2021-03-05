@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3f813ea2-4732-49cd-87f1-33bc24531012" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainWindow_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow_v2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interfaces/MainWindow_v2.ui" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces/MainWindow_v2.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/setting_widget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces/setting_widget.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2_mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/v2_mainwindow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +224,7 @@
       <workItem from="1614804271433" duration="1312000" />
       <workItem from="1614843496784" duration="3749000" />
       <workItem from="1614859457456" duration="785000" />
-      <workItem from="1614888151131" duration="17425000" />
+      <workItem from="1614888151131" duration="19467000" />
     </task>
     <task id="LOCAL-00001" summary="add new windows">
       <created>1614845451770</created>
@@ -255,7 +254,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614896177767</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add settings widget to main window&#10;add dialog for liquid choose&#10;add sygnals for all buttons (except measurment)">
+      <created>1614947625182</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1614947625182</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add files with main_window and settings guis">
+      <created>1614947688881</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1614947688881</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +278,9 @@
     <MESSAGE value="add new windows" />
     <MESSAGE value="refact" />
     <MESSAGE value="add first widget" />
-    <option name="LAST_COMMIT_MESSAGE" value="add first widget" />
+    <MESSAGE value="add settings widget to main window&#10;add dialog for liquid choose&#10;add sygnals for all buttons (except measurment)" />
+    <MESSAGE value="add files with main_window and settings guis" />
+    <option name="LAST_COMMIT_MESSAGE" value="add files with main_window and settings guis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -286,7 +301,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow_v2.coverage" NAME="MainWindow_v2 Coverage Results" MODIFIED="1614947482449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow_v2.coverage" NAME="MainWindow_v2 Coverage Results" MODIFIED="1614949581640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$probe.coverage" NAME="probe Coverage Results" MODIFIED="1614890697837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow.coverage" NAME="MainWindow Coverage Results" MODIFIED="1614702898563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

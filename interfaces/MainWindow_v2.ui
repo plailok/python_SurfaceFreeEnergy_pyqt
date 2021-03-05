@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1085</width>
-    <height>609</height>
+    <width>1246</width>
+    <height>608</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,7 +175,17 @@ QFrame{
         </property>
         <property name="styleSheet">
          <string notr="true">QFrame{
-	backgroundcolor: rgb(255, 255, 0)}</string>
+	backgroundcolor: rgb(255, 255, 0)}
+QComboBox {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 5px 2px 5px 2px;
+    min-width: 300px;
+	font: bold, 14px;
+}
+QComboBox::drop-down {
+    border: 0px;
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -184,7 +194,7 @@ QFrame{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
+         <item row="1" column="0">
           <widget class="QFrame" name="innerMainFrame">
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -192,19 +202,21 @@ QFrame{
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,10" columnstretch="4,1">
+           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,10" columnstretch="4,1,0,0">
             <item row="0" column="0">
              <widget class="QLabel" name="ctywLabel">
               <property name="styleSheet">
                <string notr="true">QLabel{
 	color:rgb(250, 120, 255);
 	background-color: rgb(80, 80, 80);
+	min-width: 220px;
+	max-width:250px;
 	border-radius: 10px;
 	font: bold, 14px
 }</string>
               </property>
               <property name="text">
-               <string>Choose Theory You Want</string>
+               <string>Choose Theory You Want =&gt;</string>
               </property>
               <property name="scaledContents">
                <bool>true</bool>
@@ -224,29 +236,23 @@ QFrame{
               </property>
               <property name="minimumSize">
                <size>
-                <width>606</width>
+                <width>306</width>
                 <height>30</height>
                </size>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::RightToLeft</enum>
               </property>
               <property name="autoFillBackground">
                <bool>false</bool>
               </property>
               <property name="styleSheet">
-               <string notr="true">QComboBox {
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 5px 2px 5px 2px;
-    min-width: 600px;
-	font: bold, 14px;
+               <string notr="true">QFrame{
+	background-color: rgb(255,255,255);
+	border-radius: 2px;
 }
-QComboBox::drop-down {
-    border: 0px;
-}
-QFrame{
-background-color: rgb(255,255,255);
-border-radius: 2px;
-
-}
+QComboBox{
+	max-width:450px}
 
 </string>
               </property>
@@ -270,7 +276,50 @@ border-radius: 2px;
               </item>
              </widget>
             </item>
-            <item row="1" column="0" colspan="2">
+            <item row="0" column="3">
+             <widget class="QComboBox" name="tempCombobox">
+              <property name="styleSheet">
+               <string notr="true">QComboBox{
+	min-width: 50px;
+	max-width: 100px
+}
+QFrame{
+	background-color: white;
+}</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>23</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>24</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>25</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>26</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>27</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>28</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="4">
              <widget class="QFrame" name="theorysFrame">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -282,6 +331,29 @@ border-radius: 2px;
                <string notr="true">border-radius: 15px</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_5"/>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="tempLabel">
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(250, 120, 255);
+	background-color: rgb(80, 80, 80);
+	min-width: 240px;
+	max-width:250px;
+	border-radius: 10px;
+	font: bold, 14px
+}</string>
+              </property>
+              <property name="text">
+               <string>Chose Temperature You Want =&gt;</string>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
              </widget>
             </item>
            </layout>
@@ -302,7 +374,7 @@ border-radius: 2px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1085</width>
+     <width>1246</width>
      <height>26</height>
     </rect>
    </property>
