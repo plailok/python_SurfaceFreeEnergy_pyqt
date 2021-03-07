@@ -6,9 +6,11 @@ from PyQt5.QtCore import pyqtSlot, Qt, QRegExp, QUrl
 from PyQt5.QtGui import QPixmap, QImage, QRegExpValidator
 from PyQt5.QtWebEngineWidgets import QWebEngineView as QWebView
 
-from setting_widget import Ui_Form
+from result_widget import Ui_Form as result_ui
+from setting_widget import Ui_Form as setting_ui
 from v2_mainwindow import Ui_MainWindow
 from dialog import Ui_Dialog
+
 from main_calculation import Calculation
 import sys
 
@@ -27,11 +29,14 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def __setupUI(self):
+        # add WebView widget
         self.web = QWebView()
         self.web.setUrl(QUrl(theory))
         self.ui.gridLayout_5.addWidget(self.web)
+
+        # add setting widget
         self.Form = QtWidgets.QWidget()
-        self.settings_ui = Ui_Form()
+        self.settings_ui = setting_ui()
         self.settings_ui.setupUi(self.Form)
         self.ui.gridLayout_5.addWidget(self.Form)
         self.Form.close()

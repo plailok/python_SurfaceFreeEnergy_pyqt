@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1248</width>
+    <height>443</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	background-color: rgb(80, 80, 80);
+}
+QLabel{
+	color:  rgb(250, 120, 255);
+	background-color: grey;
+	border-radius: 10px;
+	font: bold, 14px
+}
+QPushButton {
+	color: rgb(250, 120, 255);
+    background-color: grey;
+    border-style: outset;
+    border-width: 3px;
+    border-radius: 15px;
+    border-color: rgb(255,120,200);
+    font: bold 14px;
+    min-width: 140px;
+    padding: 6px;
+}
+QLineEdit{
+	color: white;
+	border-radius: 15px;
+    border-width: 2px;
+	border-style: outset;
+    border-radius: 25px;
+    border-color: rgb(255,255,255);
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout" columnstretch="1,1">
+   <item row="0" column="0">
+    <widget class="QTableWidget" name="tableWidget"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>PLOT WILL BE THERE</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
