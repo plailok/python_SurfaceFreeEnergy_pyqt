@@ -64,6 +64,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.settings_ui = setting_ui()
         self.settings_ui.setupUi(self.Form)
         self.ui.gridLayout_5.addWidget(self.Form)
+
         self.Form.close()
 
         # add result widget
@@ -127,7 +128,6 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             self.liquids[self.ui.theoryCombobox.currentText()] = []
             for index in range(ui.myList.count()):
                 self.liquids[self.ui.theoryCombobox.currentText()].append(ui.myList.item(index).text())
-
             self.__create_input_bar()
             self.__fullfill_table()
         else:
@@ -135,6 +135,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def __create_input_bar(self):
+        self.__delete_widgets_on_setting_layout()
         self.settings_ui.gridLayout_2.setColumnStretch(0, 5)
         self.settings_ui.gridLayout_2.setColumnStretch(1, 2)
         for index, liquid in enumerate(self.liquids[self.ui.theoryCombobox.currentText()]):
@@ -151,6 +152,9 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def __fullfill_table(self):
+        self.__clear_table_on_setting_layout()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
+        self.settings_ui.tableWidget.setSizePolicy(sizePolicy)
         self.settings_ui.tableWidget.setColumnCount(3)
         self.settings_ui.tableWidget.verticalHeader().hide()
         self.settings_ui.tableWidget.setHorizontalHeaderLabels(HORIZONTAL_HEADER)
@@ -172,15 +176,32 @@ class MyWindow_v2(QtWidgets.QMainWindow):
                 self.settings_ui.tableWidget.setItem(index, 2, item2)
 
     @pyqtSlot()
-    def __theory_chose(self):
-        print('Theory had been changed')
-        print(f'Current theory - {self.ui.theoryCombobox.currentText()}')
+    def __delete_widgets_on_setting_layout(self):
+        for index in range(self.settings_ui.gridLayout_2.count()):
+            self.settings_ui.gridLayout_2.itemAt(index).widget().deleteLater()
 
+    @pyqtSlot()
+    def __clear_table_on_setting_layout(self):
+        self.settings_ui.tableWidget.clear()
+        self.settings_ui.tableWidget.setRowCount(0)
+
+    @pyqtSlot()
+    def __theory_chose(self):
+        try:
+            self.liquids[self.ui.theoryCombobox.currentText()]
+        except Exception:
+            self.liquids[self.ui.theoryCombobox.currentText()] = []
+        finally:
+            self.__delete_widgets_on_setting_layout()
+            self.__clear_table_on_setting_layout()
+            self.__create_input_bar()
+            self.__fullfill_table()
 
 
 if __name__ == '__main__':
-    theory = '''https://www.ossila.com/pages/a-guide-to-surface-energy#:~:text=One%20of%20the%20most%20basic,
-    Zisman%20model%2C%20published%20in%201964.&text=This%20model%20assumes%20that%20the,as%20the%20critical%20surface%20tension'''
+    theory = '''https://www.ossila.com/pages/a-guide-to-surface-energy#:~:text=One%20of%20the%20most%20basic, 
+    Zisman%20model%2C%20published%20in%201964.&text=This%20model%20assumes%20that%20the,
+    as%20the%20critical%20surface%20tension '''
     try:
         app = QtWidgets.QApplication([])
         application = MyWindow_v2()
