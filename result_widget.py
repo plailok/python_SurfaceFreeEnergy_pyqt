@@ -15,12 +15,14 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1248, 443)
+        Form.setMinimumSize(QtCore.QSize(0, 400))
         Form.setStyleSheet("QWidget{\n"
-"    background-color: rgb(80, 80, 80);\n"
+"    background-color: rgb(120, 120, 120);\n"
+"    border-radius: 10px;\n"
 "}\n"
 "QLabel{\n"
 "    color:  rgb(250, 120, 255);\n"
-"    background-color: grey;\n"
+"    background-color: rgb(80, 80, 80);\n"
 "    border-radius: 10px;\n"
 "    font: bold, 14px\n"
 "}\n"
@@ -45,16 +47,16 @@ class Ui_Form(object):
 "}")
         self.gridLayout = QtWidgets.QGridLayout(Form)
         self.gridLayout.setObjectName("gridLayout")
-        self.tableWidget = QtWidgets.QTableWidget(Form)
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(0)
-        self.tableWidget.setRowCount(0)
-        self.gridLayout.addWidget(self.tableWidget, 0, 0, 1, 1)
-        self.label = QtWidgets.QLabel(Form)
-        self.label.setScaledContents(True)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
+        self.resultTabel = QtWidgets.QTableWidget(Form)
+        self.resultTabel.setObjectName("resultTabel")
+        self.resultTabel.setColumnCount(0)
+        self.resultTabel.setRowCount(0)
+        self.gridLayout.addWidget(self.resultTabel, 0, 0, 1, 1)
+        self.plotLabel = QtWidgets.QLabel(Form)
+        self.plotLabel.setScaledContents(True)
+        self.plotLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.plotLabel.setObjectName("plotLabel")
+        self.gridLayout.addWidget(self.plotLabel, 0, 1, 1, 1)
         self.gridLayout.setColumnStretch(0, 1)
         self.gridLayout.setColumnStretch(1, 1)
 
@@ -64,7 +66,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "PLOT WILL BE THERE"))
+        self.plotLabel.setText(_translate("Form", "PLOT WILL BE THERE"))
 
 
 if __name__ == "__main__":

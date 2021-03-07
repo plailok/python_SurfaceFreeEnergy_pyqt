@@ -42,15 +42,34 @@ class Ui_Form(object):
 "    border-style: outset;\n"
 "    border-radius: 25px;\n"
 "    border-color: rgb(255,255,255);\n"
+"}\n"
+"QTableWidget{\n"
+"    color: rgb(250, 120, 255);\n"
+"    background-color: grey;\n"
 "}")
         self.gridLayout_4 = QtWidgets.QGridLayout(Form)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.gridLayout_3 = QtWidgets.QGridLayout()
+        self.gridLayout_3.setContentsMargins(5, 5, 5, 15)
+        self.gridLayout_3.setHorizontalSpacing(15)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.tableWidget = QtWidgets.QTableWidget(Form)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Ignored)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
+        self.tableWidget.setSizePolicy(sizePolicy)
+        self.tableWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tableWidget.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.tableWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.tableWidget.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.tableWidget.setTextElideMode(QtCore.Qt.ElideMiddle)
+        self.tableWidget.setGridStyle(QtCore.Qt.SolidLine)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.gridLayout_3.addWidget(self.tableWidget, 0, 1, 2, 1)
         self.pushButton = QtWidgets.QPushButton(Form)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
@@ -66,8 +85,8 @@ class Ui_Form(object):
         self.gridLayout_2.setVerticalSpacing(25)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.gridLayout_3.addLayout(self.gridLayout_2, 1, 0, 1, 1)
-        self.gridLayout_3.setColumnStretch(0, 2)
-        self.gridLayout_3.setColumnStretch(1, 3)
+        self.gridLayout_3.setColumnStretch(0, 4)
+        self.gridLayout_3.setColumnStretch(1, 5)
         self.gridLayout_3.setRowStretch(0, 3)
         self.gridLayout_3.setRowStretch(1, 1)
         self.gridLayout_4.addLayout(self.gridLayout_3, 0, 0, 1, 1)

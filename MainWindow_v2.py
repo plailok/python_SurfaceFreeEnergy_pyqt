@@ -15,6 +15,31 @@ from main_calculation import Calculation
 import sys
 
 LIQUIDS = ['Water', 'Formamide', 'Ethylene Glycole', '\u03B1-bromnaphtalene']
+HORIZONTAL_HEADER = ['Liquid', 'Polar', 'Dispersive']
+TEMPERATURE = {'Water': {'21': ('w111', 111),
+                         '22': ('w222', 222),
+                         '23': ('w333', 333),
+                         '24': ('w444', 444),
+                         '25': (26.4, 46.4),
+                         '26': ('w666', 666)},
+               'Formamide': {'21': ('f111', 111),
+                             '22': ('f222', 222),
+                             '23': ('f333', 333),
+                             '24': ('f444', 444),
+                             '25': (22.4, 34.6),
+                             '26': ('f666', 666)},
+               'Ethylene Glycole': {'21': ('e111', 111),
+                                    '22': ('e222', 222),
+                                    '23': ('e333', 333),
+                                    '24': ('e444', 444),
+                                    '25': (26.4, 21.3),
+                                    '26': ('e666', 666)},
+               '\u03B1-bromnaphtalene': {'21': ('a111', 111),
+                                         '22': ('a222', 222),
+                                         '23': ('a333', 333),
+                                         '24': ('a444', 444),
+                                         '25': (44.4, 0),
+                                         '26': ('a666', 666)}}
 
 
 class MyWindow_v2(QtWidgets.QMainWindow):
@@ -40,12 +65,56 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.settings_ui.setupUi(self.Form)
         self.ui.gridLayout_5.addWidget(self.Form)
         self.Form.close()
+
+        # add result widget
+        self.Result = QtWidgets.QWidget()
+        self.result_ui = result_ui()
+        self.result_ui.setupUi(self.Result)
+        self.ui.resultGridLayout.addWidget(self.Result)
+        self.Result.close()
+
         self.ui.theoryButton.setEnabled(False)
         self.ui.theoryCombobox.setEnabled(False)
         self.settings_ui.pushButton.clicked.connect(self._add_liquid_button_clicked)
         self.ui.theoryButton.clicked.connect(self.__theory_button_checked)
         self.ui.settingsButton.clicked.connect(self.__settings_button_checked)
         self.ui.measurmentButton.clicked.connect(self.__measurment_buttton_checked)
+        self.ui.theoryCombobox.currentTextChanged.connect(self.__theory_chose)
+
+    @pyqtSlot()
+    def __theory_button_checked(self):
+        self.Form.close()
+        self.Result.close()
+        self.web.show()
+        self.resize(1246, 564)
+        self.ui.theoryCombobox.setEnabled(False)
+        self.ui.theoryButton.setEnabled(False)
+        self.ui.settingsButton.setEnabled(True)
+        self.ui.measurmentButton.setEnabled(True)
+
+    @pyqtSlot()
+    def __settings_button_checked(self):
+        self.Form.close()
+        self.Result.close()
+        # TODO Исправить этот костыль (web.show() => web.close())
+        self.web.show()
+        self.resize(1246, 564)
+        self.web.close()
+        self.Form.show()
+        self.ui.theoryCombobox.setEnabled(True)
+        self.ui.theoryButton.setEnabled(True)
+        self.ui.settingsButton.setEnabled(False)
+        self.ui.measurmentButton.setEnabled(True)
+
+    @pyqtSlot()
+    def __measurment_buttton_checked(self):
+        self.web.close()
+        self.Form.show()
+        self.Result.show()
+        self.ui.theoryCombobox.setEnabled(True)
+        self.ui.theoryButton.setEnabled(True)
+        self.ui.settingsButton.setEnabled(True)
+        self.ui.measurmentButton.setEnabled(False)
 
     @pyqtSlot()
     def _add_liquid_button_clicked(self):
@@ -60,7 +129,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
                 self.liquids[self.ui.theoryCombobox.currentText()].append(ui.myList.item(index).text())
 
             self.__create_input_bar()
-            # self.__fullfill_table()
+            self.__fullfill_table()
         else:
             pass
 
@@ -82,42 +151,34 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def __fullfill_table(self):
-        pass
+        self.settings_ui.tableWidget.setColumnCount(3)
+        self.settings_ui.tableWidget.verticalHeader().hide()
+        self.settings_ui.tableWidget.setHorizontalHeaderLabels(HORIZONTAL_HEADER)
+        self.settings_ui.tableWidget.setColumnWidth(0, 260)
+        if self.liquids[self.ui.theoryCombobox.currentText()]:
+            liquids = self.liquids[self.ui.theoryCombobox.currentText()]
+            cur_temp = self.ui.tempCombobox.currentText()
+            self.settings_ui.tableWidget.setRowCount(len(liquids))
+            for index, liquid in enumerate(liquids):
+                item0 = QTableWidgetItem(liquid)
+                item0.setTextAlignment(QtCore.Qt.AlignCenter)
+                item1 = QTableWidgetItem(str(TEMPERATURE[liquid][cur_temp][0]))
+                item1.setTextAlignment(QtCore.Qt.AlignCenter)
+                item2 = QTableWidgetItem(str(TEMPERATURE[liquid][cur_temp][1]))
+                item2.setTextAlignment(QtCore.Qt.AlignCenter)
 
-    @pyqtSlot()
-    def __theory_button_checked(self):
-        print('Theory button checked')
-        self.Form.close()
-        self.web.show()
-        self.ui.theoryCombobox.setEnabled(False)
-        self.ui.theoryButton.setEnabled(False)
-        self.ui.settingsButton.setEnabled(True)
-        self.ui.measurmentButton.setEnabled(True)
-
-    @pyqtSlot()
-    def __settings_button_checked(self):
-        print('Settings button checked')
-        self.web.close()
-        self.Form.show()
-        self.ui.theoryCombobox.setEnabled(True)
-        self.ui.theoryButton.setEnabled(True)
-        self.ui.settingsButton.setEnabled(False)
-        self.ui.measurmentButton.setEnabled(True)
-
-    @pyqtSlot()
-    def __measurment_buttton_checked(self):
-        print('Measurment button checked')
-        self.Form.close()
-        self.web.close()
-        self.ui.theoryCombobox.setEnabled(True)
-        self.ui.theoryButton.setEnabled(True)
-        self.ui.settingsButton.setEnabled(True)
-        self.ui.measurmentButton.setEnabled(False)
+                self.settings_ui.tableWidget.setItem(index, 0, item0)
+                self.settings_ui.tableWidget.setItem(index, 1, item1)
+                self.settings_ui.tableWidget.setItem(index, 2, item2)
 
     @pyqtSlot()
     def __theory_chose(self):
         print('Theory had been changed')
         print(f'Current theory - {self.ui.theoryCombobox.currentText()}')
+        if not self.liquids[self.ui.theoryCombobox.currentText()]:
+            print('no such information')
+        else:
+            print(self.liquids[self.ui.theoryCombobox.currentText()])
 
 
 if __name__ == '__main__':

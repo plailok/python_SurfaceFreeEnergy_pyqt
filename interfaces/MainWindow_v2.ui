@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1246</width>
-    <height>608</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,8 @@
 }
 QMainWindow{
 	background-color:rgb(255,255,255)
-}</string>
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_6">
@@ -37,7 +38,7 @@ QMainWindow{
         <property name="maximumSize">
          <size>
           <width>200</width>
-          <height>16377</height>
+          <height>480</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -167,6 +168,12 @@ QFrame{
         <property name="minimumSize">
          <size>
           <width>700</width>
+          <height>480</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
           <height>480</height>
          </size>
         </property>
