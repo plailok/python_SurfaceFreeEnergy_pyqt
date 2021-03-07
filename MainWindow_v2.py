@@ -175,6 +175,10 @@ class MyWindow_v2(QtWidgets.QMainWindow):
     def __theory_chose(self):
         print('Theory had been changed')
         print(f'Current theory - {self.ui.theoryCombobox.currentText()}')
+        if not self.liquids[self.ui.theoryCombobox.currentText()]:
+            print('no such information')
+        else:
+            print(self.liquids[self.ui.theoryCombobox.currentText()])
 
 
 if __name__ == '__main__':
