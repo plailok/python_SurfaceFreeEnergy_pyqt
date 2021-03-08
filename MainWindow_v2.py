@@ -212,6 +212,8 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             dispersive = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][0]
             self.to_process.append((self.liquids_inuse_list[index].text(), float(line.text()), dispersive, polar))
         print(self.to_process)
+        self.math = Calculation(self.to_process)
+        self.math.calculate()
 
 
 if __name__ == '__main__':
