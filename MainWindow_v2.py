@@ -51,6 +51,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.liquids = {}
         self.line = None
         self.__setupUI()
+        self.result = []
 
     @pyqtSlot()
     def __setupUI(self):
@@ -76,7 +77,8 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
         self.ui.theoryButton.setEnabled(False)
         self.ui.theoryCombobox.setEnabled(False)
-        self.settings_ui.pushButton.clicked.connect(self._add_liquid_button_clicked)
+        self.settings_ui.calculateButton.clicked.connect(self.__collect_data_to_process)
+        self.settings_ui.addliquidButton.clicked.connect(self.__add_liquid_button_clicked)
         self.ui.theoryButton.clicked.connect(self.__theory_button_checked)
         self.ui.settingsButton.clicked.connect(self.__settings_button_checked)
         self.ui.measurmentButton.clicked.connect(self.__measurment_buttton_checked)
@@ -118,7 +120,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui.measurmentButton.setEnabled(False)
 
     @pyqtSlot()
-    def _add_liquid_button_clicked(self):
+    def __add_liquid_button_clicked(self):
         Dialog = QtWidgets.QDialog()
         ui = Ui_Dialog(LIQUIDS)
         ui.setupUi(Dialog)
@@ -135,20 +137,25 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def __create_input_bar(self):
+        self.lineedit_list = []
+        self.liquids_inuse_list = []
         self.__delete_widgets_on_setting_layout()
-        self.settings_ui.gridLayout_2.setColumnStretch(0, 5)
-        self.settings_ui.gridLayout_2.setColumnStretch(1, 2)
+        self.settings_ui.liquidsGridLayout.setColumnStretch(0, 5)
+        self.settings_ui.liquidsGridLayout.setColumnStretch(1, 2)
         for index, liquid in enumerate(self.liquids[self.ui.theoryCombobox.currentText()]):
             new_label = QtWidgets.QLabel(text=liquid)
+            self.liquids_inuse_list.append(new_label)
             new_label.setFixedHeight(30)
             new_label.setAlignment(QtCore.Qt.AlignCenter)
             new_lineedit = QtWidgets.QLineEdit()
+            self.lineedit_list.append(new_lineedit)
             new_lineedit.setAlignment(QtCore.Qt.AlignCenter)
             reg_ex = QRegExp("[0-9]+.[0-9]{,3}")
             input_validator = QRegExpValidator(reg_ex, new_lineedit)
             new_lineedit.setValidator(input_validator)
-            self.settings_ui.gridLayout_2.addWidget(new_label, index, 0)
-            self.settings_ui.gridLayout_2.addWidget(new_lineedit, index, 1)
+            self.settings_ui.liquidsGridLayout.addWidget(new_label, index, 0)
+            self.settings_ui.liquidsGridLayout.addWidget(new_lineedit, index, 1)
+        print(self.lineedit_list)
 
     @pyqtSlot()
     def __fullfill_table(self):
@@ -166,9 +173,9 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             for index, liquid in enumerate(liquids):
                 item0 = QTableWidgetItem(liquid)
                 item0.setTextAlignment(QtCore.Qt.AlignCenter)
-                item1 = QTableWidgetItem(str(TEMPERATURE[liquid][cur_temp][0]))
+                item1 = QTableWidgetItem(str(TEMPERATURE[liquid][cur_temp][1]))
                 item1.setTextAlignment(QtCore.Qt.AlignCenter)
-                item2 = QTableWidgetItem(str(TEMPERATURE[liquid][cur_temp][1]))
+                item2 = QTableWidgetItem(str(TEMPERATURE[liquid][cur_temp][0]))
                 item2.setTextAlignment(QtCore.Qt.AlignCenter)
 
                 self.settings_ui.tableWidget.setItem(index, 0, item0)
@@ -177,8 +184,8 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def __delete_widgets_on_setting_layout(self):
-        for index in range(self.settings_ui.gridLayout_2.count()):
-            self.settings_ui.gridLayout_2.itemAt(index).widget().deleteLater()
+        for index in range(self.settings_ui.liquidsGridLayout.count()):
+            self.settings_ui.liquidsGridLayout.itemAt(index).widget().deleteLater()
 
     @pyqtSlot()
     def __clear_table_on_setting_layout(self):
@@ -196,6 +203,15 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             self.__clear_table_on_setting_layout()
             self.__create_input_bar()
             self.__fullfill_table()
+
+    def __collect_data_to_process(self):
+        self.to_process = []
+        cur_temp = self.ui.tempCombobox.currentText()
+        for index, line in enumerate(self.lineedit_list):
+            polar = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][1]
+            dispersive = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][0]
+            self.to_process.append((self.liquids_inuse_list[index].text(), float(line.text()), dispersive, polar))
+        print(self.to_process)
 
 
 if __name__ == '__main__':

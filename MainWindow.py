@@ -81,8 +81,10 @@ class MyWindow(QtWidgets.QMainWindow):
         for line in self.line:
             params = TEMPERATURE[line[0].text()][self.ui.tempCombobox.currentText()]
             self.result.append((line[0].text(), line[1].text(), params[0], params[1]))
-        self.calc = Calculation(to_process=self.result)
-        self.calc.calculate()
+
+        print(self.result)
+        # self.calc = Calculation(to_process=self.result)
+        # self.calc.calculate()
 
     # def build_input_frame(self):
     #     list = ['Liquid', 'Polar', 'Non-Polar']

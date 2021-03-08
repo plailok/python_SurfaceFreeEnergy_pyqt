@@ -16,43 +16,62 @@ class Ui_Form(object):
         Form.setObjectName("Form")
         Form.resize(747, 447)
         Form.setStyleSheet("QWidget{\n"
-                           "    background-color: rgb(80, 80, 80);\n"
-                           "}\n"
-                           "QLabel{\n"
-                           "    color:  rgb(250, 120, 255);\n"
-                           "    background-color: grey;\n"
-                           "    border-radius: 10px;\n"
-                           "    font: bold, 14px\n"
-                           "}\n"
-                           "QPushButton {\n"
-                           "    color: rgb(250, 120, 255);\n"
-                           "    background-color: grey;\n"
-                           "    border-style: outset;\n"
-                           "    border-width: 3px;\n"
-                           "    border-radius: 15px;\n"
-                           "    border-color: rgb(255,120,200);\n"
-                           "    font: bold 14px;\n"
-                           "    min-width: 140px;\n"
-                           "    padding: 6px;\n"
-                           "}\n"
-                           "QLineEdit{\n"
-                           "    color: white;\n"
-                           "    border-radius: 15px;\n"
-                           "    border-width: 2px;\n"
-                           "    border-style: outset;\n"
-                           "    border-radius: 25px;\n"
-                           "    border-color: rgb(255,255,255);\n"
-                           "}\n"
-                           "QTableWidget{\n"
-                           "    color: rgb(250, 120, 255);\n"
-                           "    background-color: grey;\n"
-                           "}")
-        self.gridLayout_4 = QtWidgets.QGridLayout(Form)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.gridLayout_3 = QtWidgets.QGridLayout()
-        self.gridLayout_3.setContentsMargins(5, 5, 5, 15)
-        self.gridLayout_3.setHorizontalSpacing(15)
+"    background-color: rgb(80, 80, 80);\n"
+"}\n"
+"QLabel{\n"
+"    color:  rgb(250, 120, 255);\n"
+"    background-color: grey;\n"
+"    border-radius: 10px;\n"
+"    font: bold, 14px\n"
+"}\n"
+"QPushButton {\n"
+"    color: rgb(250, 120, 255);\n"
+"    background-color: grey;\n"
+"    border-style: outset;\n"
+"    border-width: 3px;\n"
+"    border-radius: 15px;\n"
+"    border-color: rgb(255,120,200);\n"
+"    font: bold 14px;\n"
+"    min-width: 140px;\n"
+"    padding: 6px;\n"
+"}\n"
+"QLineEdit{\n"
+"    color: white;\n"
+"    border-radius: 15px;\n"
+"    border-width: 2px;\n"
+"    border-style: outset;\n"
+"    border-radius: 25px;\n"
+"    border-color: rgb(255,255,255);\n"
+"}\n"
+"QTableWidget{\n"
+"    color: rgb(250, 120, 255);\n"
+"    background-color: grey;\n"
+"}")
+        self.gridLayout_3 = QtWidgets.QGridLayout(Form)
         self.gridLayout_3.setObjectName("gridLayout_3")
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setContentsMargins(-1, 7, -1, 7)
+        self.gridLayout.setVerticalSpacing(15)
+        self.gridLayout.setObjectName("gridLayout")
+        self.calculateButton = QtWidgets.QPushButton(Form)
+        self.calculateButton.setObjectName("calculateButton")
+        self.gridLayout.addWidget(self.calculateButton, 2, 0, 1, 1)
+        self.addliquidButton = QtWidgets.QPushButton(Form)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.addliquidButton.sizePolicy().hasHeightForWidth())
+        self.addliquidButton.setSizePolicy(sizePolicy)
+        self.addliquidButton.setStyleSheet("")
+        self.addliquidButton.setObjectName("addliquidButton")
+        self.gridLayout.addWidget(self.addliquidButton, 0, 0, 1, 1)
+        self.liquidsGridLayout = QtWidgets.QGridLayout()
+        self.liquidsGridLayout.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
+        self.liquidsGridLayout.setContentsMargins(-1, 15, 7, 15)
+        self.liquidsGridLayout.setHorizontalSpacing(15)
+        self.liquidsGridLayout.setVerticalSpacing(25)
+        self.liquidsGridLayout.setObjectName("liquidsGridLayout")
+        self.gridLayout.addLayout(self.liquidsGridLayout, 1, 0, 1, 1)
         self.tableWidget = QtWidgets.QTableWidget(Form)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -70,27 +89,13 @@ class Ui_Form(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
-        self.gridLayout_3.addWidget(self.tableWidget, 0, 1, 2, 1)
-        self.pushButton = QtWidgets.QPushButton(Form)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy)
-        self.pushButton.setStyleSheet("")
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout_3.addWidget(self.pushButton, 0, 0, 1, 1)
-        self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
-        self.gridLayout_2.setContentsMargins(-1, 15, 7, -1)
-        self.gridLayout_2.setVerticalSpacing(25)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.gridLayout_3.addLayout(self.gridLayout_2, 1, 0, 1, 1)
-        self.gridLayout_3.setColumnStretch(0, 4)
-        self.gridLayout_3.setColumnStretch(1, 5)
-        self.gridLayout_3.setRowStretch(0, 3)
-        self.gridLayout_3.setRowStretch(1, 1)
-        self.gridLayout_4.addLayout(self.gridLayout_3, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.tableWidget, 0, 1, 3, 1)
+        self.gridLayout.setColumnStretch(0, 3)
+        self.gridLayout.setColumnStretch(1, 4)
+        self.gridLayout.setRowStretch(0, 1)
+        self.gridLayout.setRowStretch(1, 3)
+        self.gridLayout.setRowStretch(2, 1)
+        self.gridLayout_3.addLayout(self.gridLayout, 0, 0, 1, 1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -98,12 +103,12 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton.setText(_translate("Form", "Add Liquids"))
+        self.calculateButton.setText(_translate("Form", "Calculate"))
+        self.addliquidButton.setText(_translate("Form", "Add Liquids"))
 
 
 if __name__ == "__main__":
     import sys
-
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
     ui = Ui_Form()
