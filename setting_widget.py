@@ -16,37 +16,38 @@ class Ui_Form(object):
         Form.setObjectName("Form")
         Form.resize(747, 447)
         Form.setStyleSheet("QWidget{\n"
-"    background-color: rgb(80, 80, 80);\n"
-"}\n"
-"QLabel{\n"
-"    color:  rgb(250, 120, 255);\n"
-"    background-color: grey;\n"
-"    border-radius: 10px;\n"
-"    font: bold, 14px\n"
-"}\n"
-"QPushButton {\n"
-"    color: rgb(250, 120, 255);\n"
-"    background-color: grey;\n"
-"    border-style: outset;\n"
-"    border-width: 3px;\n"
-"    border-radius: 15px;\n"
-"    border-color: rgb(255,120,200);\n"
-"    font: bold 14px;\n"
-"    min-width: 140px;\n"
-"    padding: 6px;\n"
-"}\n"
-"QLineEdit{\n"
-"    color: white;\n"
-"    border-radius: 15px;\n"
-"    border-width: 2px;\n"
-"    border-style: outset;\n"
-"    border-radius: 25px;\n"
-"    border-color: rgb(255,255,255);\n"
-"}\n"
-"QTableWidget{\n"
-"    color: rgb(250, 120, 255);\n"
-"    background-color: grey;\n"
-"}")
+                           "    background-color: rgb(80, 80, 80);\n"
+                           "}\n"
+                           "QLabel{\n"
+                           "    color:  rgb(250, 120, 255);\n"
+                           "    background-color: grey;\n"
+                           "    border-radius: 10px;\n"
+                           "    font: bold, 14px\n"
+                           "}\n"
+                           "QPushButton {\n"
+                           "    color: rgb(250, 120, 255);\n"
+                           "    background-color: grey;\n"
+                           "    border-style: outset;\n"
+                           "    border-width: 3px;\n"
+                           "    border-radius: 15px;\n"
+                           "    border-color: rgb(255,120,200);\n"
+                           "    font: bold 14px;\n"
+                           "    min-width: 140px;\n"
+                           "    padding: 6px;\n"
+                           "}\n"
+                           "QLineEdit{\n"
+                           "    color: white;\n"
+                           "    border-radius: 15px;\n"
+                           "    border-width: 2px;\n"
+                           "    border-style: outset;\n"
+                           "    border-radius: 25px;\n"
+                           "    border-color: rgb(255,255,255);\n"
+                           "}\n"
+                           "QTableWidget{\n"
+                           "    color: rgb(250, 120, 255);\n"
+                           "    background-color: grey;\n"
+                           "    font: bold 14px;\n"
+                           "}")
         self.gridLayout_3 = QtWidgets.QGridLayout(Form)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.gridLayout = QtWidgets.QGridLayout()
@@ -109,6 +110,7 @@ class Ui_Form(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
     ui = Ui_Form()

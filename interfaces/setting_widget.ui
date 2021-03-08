@@ -96,11 +96,8 @@ QTableWidget{
        <property name="bottomMargin">
         <number>15</number>
        </property>
-       <property name="horizontalSpacing">
+       <property name="spacing">
         <number>15</number>
-       </property>
-       <property name="verticalSpacing">
-        <number>25</number>
        </property>
       </layout>
      </item>

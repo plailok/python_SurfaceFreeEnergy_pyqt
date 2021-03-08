@@ -36,7 +36,6 @@ class Calculation:
         self.to_process = to_process
 
     def calculate(self):
-        print(self.to_process)
         try:
             for value in self.to_process:
                 result_x = math.sqrt(value[3]) / math.sqrt(value[2])
@@ -60,9 +59,6 @@ class Calculation:
             for i in range(len(self.y)):
                 self.y[i] *= r_squared_1
                 y_2 = self.y[i] * r_squared_2
-
-            print(self.y)
-            print(y_2)
             try:
                 if 0 in self.x:
                     index = self.x.index(0)
@@ -75,12 +71,11 @@ class Calculation:
                 opposite = max(self.y) - min(self.y)
                 adjacent = max(self.x) - min(self.x)
                 a = opposite / adjacent
-                print('Formula is next: {}*x+{}'.format(a, b))
                 ## Finding result
                 polarity_part = a ** 2
                 dispersive_part = b ** 2
                 total = dispersive_part + polarity_part
-                self.result = [dispersive_part, polarity_part, total]
+                self.result = (dispersive_part, polarity_part, total)
 
                 # values for making ticks in x and y axis
                 xnumbers = np.linspace(0, 7, 15)
@@ -106,5 +101,6 @@ class Calculation:
                     plt.grid()
                     plt.axis([-0.1, 2.0, 2.9, 20.1])  # [xstart, xend, ystart, yend]
                     plt.show()
+                    plt.savefig('result_plot.png')
                 except Exception as Exc:
                     print(Exc)

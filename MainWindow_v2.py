@@ -15,7 +15,9 @@ from main_calculation import Calculation
 import sys
 
 LIQUIDS = ['Water', 'Formamide', 'Ethylene Glycole', '\u03B1-bromnaphtalene']
-HORIZONTAL_HEADER = ['Liquid', 'Polar', 'Dispersive']
+HORIZONTAL_HEADER_SETTING = ['Liquid', 'Polar', 'Dispersive']
+HORIZONTAL_HEADER_RESULT = ['Dispersive', 'Polar', 'Tension', 'Method']
+
 TEMPERATURE = {'Water': {'21': ('w111', 111),
                          '22': ('w222', 222),
                          '23': ('w333', 333),
@@ -49,6 +51,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.liquids = {}
+        self.curent_index = 0
         self.line = None
         self.__setupUI()
         self.result = []
@@ -77,12 +80,17 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
         self.ui.theoryButton.setEnabled(False)
         self.ui.theoryCombobox.setEnabled(False)
-        self.settings_ui.calculateButton.clicked.connect(self.__collect_data_to_process)
-        self.settings_ui.addliquidButton.clicked.connect(self.__add_liquid_button_clicked)
         self.ui.theoryButton.clicked.connect(self.__theory_button_checked)
         self.ui.settingsButton.clicked.connect(self.__settings_button_checked)
         self.ui.measurmentButton.clicked.connect(self.__measurment_buttton_checked)
         self.ui.theoryCombobox.currentTextChanged.connect(self.__theory_chose)
+
+        self.settings_ui.calculateButton.clicked.connect(self.__collect_data_to_process)
+        self.settings_ui.addliquidButton.clicked.connect(self.__add_liquid_button_clicked)
+
+        self.result_ui.resultTabel.setColumnCount(4)
+        self.result_ui.resultTabel.setHorizontalHeaderLabels(HORIZONTAL_HEADER_RESULT)
+        self.result_ui.resultTabel.setRowCount(5)
 
     @pyqtSlot()
     def __theory_button_checked(self):
@@ -155,7 +163,6 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             new_lineedit.setValidator(input_validator)
             self.settings_ui.liquidsGridLayout.addWidget(new_label, index, 0)
             self.settings_ui.liquidsGridLayout.addWidget(new_lineedit, index, 1)
-        print(self.lineedit_list)
 
     @pyqtSlot()
     def __fullfill_table(self):
@@ -164,7 +171,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.settings_ui.tableWidget.setSizePolicy(sizePolicy)
         self.settings_ui.tableWidget.setColumnCount(3)
         self.settings_ui.tableWidget.verticalHeader().hide()
-        self.settings_ui.tableWidget.setHorizontalHeaderLabels(HORIZONTAL_HEADER)
+        self.settings_ui.tableWidget.setHorizontalHeaderLabels(HORIZONTAL_HEADER_SETTING)
         self.settings_ui.tableWidget.setColumnWidth(0, 260)
         if self.liquids[self.ui.theoryCombobox.currentText()]:
             liquids = self.liquids[self.ui.theoryCombobox.currentText()]
@@ -211,9 +218,33 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             polar = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][1]
             dispersive = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][0]
             self.to_process.append((self.liquids_inuse_list[index].text(), float(line.text()), dispersive, polar))
-        print(self.to_process)
         self.math = Calculation(self.to_process)
         self.math.calculate()
+        self.result.append(self.math.result)
+        self._add_to_result_table()
+        self._add_plot()
+
+    def _add_plot(self):
+        pixmap = QPixmap('result_plot.png')
+        self.result_ui.plotLabel.setPixmap(pixmap)
+
+    def _add_to_result_table(self):
+        if len(self.result) > self.curent_index:
+            new_result = self.result[-1]
+            print(new_result)
+            item0 = QTableWidgetItem(str(round(new_result[0], 3)))
+            item0.setTextAlignment(QtCore.Qt.AlignCenter)
+            self.result_ui.resultTabel.setItem(self.curent_index, 0, item0)
+            item1 = QTableWidgetItem(str(round(new_result[1], 3)))
+            item1.setTextAlignment(QtCore.Qt.AlignCenter)
+            self.result_ui.resultTabel.setItem(self.curent_index, 1, item1)
+            item2 = QTableWidgetItem(str(round(new_result[2], 3)))
+            item2.setTextAlignment(QtCore.Qt.AlignCenter)
+            self.result_ui.resultTabel.setItem(self.curent_index, 2, item2)
+            item3 = QTableWidgetItem(self.ui.theoryCombobox.currentText())
+            item3.setTextAlignment(QtCore.Qt.AlignCenter)
+            self.result_ui.resultTabel.setItem(self.curent_index, 3, item3)
+            self.curent_index += 1
 
 
 if __name__ == '__main__':

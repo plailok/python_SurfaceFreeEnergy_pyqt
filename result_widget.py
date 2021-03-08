@@ -37,13 +37,9 @@ class Ui_Form(object):
 "    min-width: 140px;\n"
 "    padding: 6px;\n"
 "}\n"
-"QLineEdit{\n"
-"    color: white;\n"
-"    border-radius: 15px;\n"
-"    border-width: 2px;\n"
-"    border-style: outset;\n"
-"    border-radius: 25px;\n"
-"    border-color: rgb(255,255,255);\n"
+"QTableWidget{\n"
+"    color: rgb(250, 120, 255);\n"
+"    font: bold 14px;\n"
 "}")
         self.gridLayout = QtWidgets.QGridLayout(Form)
         self.gridLayout.setObjectName("gridLayout")
@@ -66,6 +62,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
+        self.resultTabel.setSortingEnabled(True)
         self.plotLabel.setText(_translate("Form", "PLOT WILL BE THERE"))
 
 
