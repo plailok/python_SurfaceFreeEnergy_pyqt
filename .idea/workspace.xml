@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f813ea2-4732-49cd-87f1-33bc24531012" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/python_SurfaceFreeEnergy_pyqt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/python_SurfaceFreeEnergy_pyqt.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainWindow_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/result_widget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces/result_widget.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/setting_widget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces/setting_widget.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_calculation.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_calculation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/result_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_widget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python_SurfaceFreeEnergyApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -201,9 +198,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.MainWindow_v2" />
+        <item itemvalue="Python.main_calculation" />
         <item itemvalue="Python.probe" />
         <item itemvalue="Python.MainWindow" />
-        <item itemvalue="Python.main_calculation" />
         <item itemvalue="Python.SDF_dialog" />
       </list>
     </recent_temporary>
@@ -232,7 +229,12 @@
       <workItem from="1615064291876" duration="17000" />
       <workItem from="1615131536082" duration="8430000" />
       <workItem from="1615192213720" duration="6914000" />
-      <workItem from="1615208977885" duration="5440000" />
+      <workItem from="1615208977885" duration="5567000" />
+      <workItem from="1615240152285" duration="1880000" />
+      <workItem from="1615282760633" duration="5165000" />
+      <workItem from="1615302705944" duration="1265000" />
+      <workItem from="1615368903999" duration="16000" />
+      <workItem from="1615381674304" duration="822000" />
     </task>
     <task id="LOCAL-00001" summary="add new windows">
       <created>1614845451770</created>
@@ -332,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615207901514</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added result table and result frame for plot&#10;code refactor">
+      <created>1615228955141</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1615228955142</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +359,8 @@
     <MESSAGE value="setting widget all settings done!" />
     <MESSAGE value="addded calibrate button, added method for data collection" />
     <MESSAGE value="addede first calculation method" />
-    <option name="LAST_COMMIT_MESSAGE" value="addede first calculation method" />
+    <MESSAGE value="added result table and result frame for plot&#10;code refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="added result table and result frame for plot&#10;code refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -359,11 +369,6 @@
           <url>file://$PROJECT_DIR$/dialog.py</url>
           <line>21</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main_calculation.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -376,8 +381,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow_v2.coverage" NAME="MainWindow_v2 Coverage Results" MODIFIED="1615226745948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow_v2.coverage" NAME="MainWindow_v2 Coverage Results" MODIFIED="1615382182871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$probe.coverage" NAME="probe Coverage Results" MODIFIED="1615206713629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$main_calculation.coverage" NAME="main_calculation Coverage Results" MODIFIED="1615298393476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow.coverage" NAME="MainWindow Coverage Results" MODIFIED="1615193364342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

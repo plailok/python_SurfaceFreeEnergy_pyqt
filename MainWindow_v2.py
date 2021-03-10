@@ -14,9 +14,12 @@ from dialog import Ui_Dialog
 from main_calculation import Calculation
 import sys
 
+THEORY = '''https://www.ossila.com/pages/a-guide-to-surface-energy#:~:text=One%20of%20the%20most%20basic, 
+Zisman%20model%2C%20published%20in%201964.&text=This%20model%20assumes%20that%20the,
+as%20the%20critical%20surface%20tension '''
 LIQUIDS = ['Water', 'Formamide', 'Ethylene Glycole', '\u03B1-bromnaphtalene']
 HORIZONTAL_HEADER_SETTING = ['Liquid', 'Polar', 'Dispersive']
-HORIZONTAL_HEADER_RESULT = ['Dispersive', 'Polar', 'Tension', 'Method']
+HORIZONTAL_HEADER_RESULT = ['Dispersive', 'Polar', 'Total', 'Method']
 
 TEMPERATURE = {'Water': {'21': ('w111', 111),
                          '22': ('w222', 222),
@@ -60,7 +63,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
     def __setupUI(self):
         # add WebView widget
         self.web = QWebView()
-        self.web.setUrl(QUrl(theory))
+        self.web.setUrl(QUrl(THEORY))
         self.ui.gridLayout_5.addWidget(self.web)
 
         # add setting widget
@@ -86,6 +89,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui.theoryCombobox.currentTextChanged.connect(self.__theory_chose)
 
         self.settings_ui.calculateButton.clicked.connect(self.__collect_data_to_process)
+        self.settings_ui.calculateButton.setEnabled(False)
         self.settings_ui.addliquidButton.clicked.connect(self.__add_liquid_button_clicked)
 
         self.result_ui.resultTabel.setColumnCount(4)
@@ -156,6 +160,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             new_label.setFixedHeight(30)
             new_label.setAlignment(QtCore.Qt.AlignCenter)
             new_lineedit = QtWidgets.QLineEdit()
+            new_lineedit.editingFinished.connect(self.check_all)
             self.lineedit_list.append(new_lineedit)
             new_lineedit.setAlignment(QtCore.Qt.AlignCenter)
             reg_ex = QRegExp("[0-9]+.[0-9]{,3}")
@@ -221,6 +226,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.math = Calculation(self.to_process)
         self.math.calculate()
         self.result.append(self.math.result)
+        print(self.to_process)
         self._add_to_result_table()
         self._add_plot()
 
@@ -246,11 +252,19 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             self.result_ui.resultTabel.setItem(self.curent_index, 3, item3)
             self.curent_index += 1
 
+    def check_all(self):
+        print(self.curent)
+        current = 0
+        for line in self.lineedit_list:
+            if line.text() != '':
+                current += 1
+        if current == len(self.lineedit_list):
+            self.settings_ui.calculateButton.setEnabled(True)
+        else:
+            self.settings_ui.calculateButton.setEnabled(False)
+
 
 if __name__ == '__main__':
-    theory = '''https://www.ossila.com/pages/a-guide-to-surface-energy#:~:text=One%20of%20the%20most%20basic, 
-    Zisman%20model%2C%20published%20in%201964.&text=This%20model%20assumes%20that%20the,
-    as%20the%20critical%20surface%20tension '''
     try:
         app = QtWidgets.QApplication([])
         application = MyWindow_v2()

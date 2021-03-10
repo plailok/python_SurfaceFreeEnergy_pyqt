@@ -3,6 +3,8 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+from datetime import datetime
 
 LIQUIDS = ['water',
            'ethylene_glycol',
@@ -13,94 +15,77 @@ SIGMA = [(18.7, 53.6),
          (39.4, 19.6),
          (44.4, 0)]  # first value in tuple is dispersive part and second is polar
 CONSTANT_DICT = dict(zip(LIQUIDS, SIGMA))
-polarity_part = None
-dispersive_part = None
-total = None
 PI = 3.141592653
-x = []
-y = []
-y_2 = []
-y_approx = []
-y_start = []
-a = None
-b = None
 
 
 class Calculation:
 
-    def __init__(self, to_process):
+    def __init__(self, to_process, name):
+        cur_dtime = datetime.now()
+        self.current_date = str(cur_dtime.date())
         self.x = []
         self.y = []
-        self.y_approx = []
-        self.result_x = 0
+        self.result = None
         self.to_process = to_process
+        self.name = name
 
     def calculate(self):
-        try:
-            for value in self.to_process:
-                result_x = math.sqrt(value[3]) / math.sqrt(value[2])
-                self.x.append(round(result_x, 2))
-                angle_radiant = (float(value[1]) * math.pi) / 180
-                result_y1 = 0.5 + (math.cos(angle_radiant)) / 2
-                result_y2 = (value[2] + value[3]) / math.sqrt(value[2])
-                res_y = result_y1 * result_y2
-                self.y.append(res_y)
-        except Exception as exc:
-            print(exc)
+        if self.name == 'Owens-Vens':
+            self.method_owens_vens()
         else:
-            self.x.sort()
-            self.y.sort()
-            y_2 = []
-            correlation_matrix = np.corrcoef(self.x, self.y)
-            correlation_xy = correlation_matrix[0, 1]
-            r_squared_1 = correlation_xy ** 2
-            r_squared_2 = correlation_xy / 2
-            # print('Applying R square')
-            for i in range(len(self.y)):
-                self.y[i] *= r_squared_1
-                y_2 = self.y[i] * r_squared_2
-            try:
-                if 0 in self.x:
-                    index = self.x.index(0)
-                    b = self.y[index]
-                else:
-                    _ = min(self.x)
-                    index = self.x.index(_)
-                    b = self.y[index]
+            raise NameError(f'such method {self.name} is not valid now')
 
-                opposite = max(self.y) - min(self.y)
-                adjacent = max(self.x) - min(self.x)
-                a = opposite / adjacent
-                ## Finding result
-                polarity_part = a ** 2
-                dispersive_part = b ** 2
-                total = dispersive_part + polarity_part
-                self.result = (dispersive_part, polarity_part, total)
+    def method_owens_vens(self):
+        for value in self.to_process:
+            result_x = math.sqrt(value[3]) / math.sqrt(value[2])
+            angle_radiant = (float(value[1]) * math.pi) / 180
+            y1 = 0.5 + (math.cos(angle_radiant)) / 2
+            y2 = (value[2] + value[3]) / math.sqrt(value[2])
+            res_y = y1 * y2
+            self.y.append(res_y)
+            self.x.append(round(result_x, 2))
+        self.x.sort()
+        self.y.sort()
+        x = np.array(self.x)
+        y = np.array(self.y)
+        a, b = np.polyfit(x, y, 1)
 
-                # values for making ticks in x and y axis
-                xnumbers = np.linspace(0, 7, 15)
-                ynumbers = np.linspace(0, 20, 11)
-                y_approx = []
-                for i, _ in enumerate(self.x):
-                    result = a * _ + b
-                    y_approx.append(result)
-            except Exception as exception_2:
-                print(exception_2)
+        # Finding result
+        polarity_part = a ** 2
+        dispersive_part = b ** 2
+        total = dispersive_part + polarity_part
+        self.result = (dispersive_part, polarity_part, total)
+
+        # values for making ticks in x and y axis
+        xnumbers = np.linspace(0, 7, 15)
+        ynumbers = np.linspace(0, 20, 11)
+        plt.plot(x, y, 'r', x, a * x + b, 'g')  # r, g - red, green colour
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.title("Plot of a surface free energy")
+        plt.xticks(xnumbers)
+        plt.yticks(ynumbers)
+        plt.legend(['basic', 'approximate'])
+        plt.text(0.75, self.y[-1], f'y={round(a, 2)}x+{round(b, 2)}', horizontalalignment='center',
+                 verticalalignment='center')
+        plt.grid()
+        plt.axis([0, 2.0, 2.9, self.y[-1] + 1])  # [xstart, xend, ystart, yend]
+        self.save_fig()
+
+    def save_fig(self):
+        curent_index = 0
+        while True:
+            fname = f'result/{self.current_date}_{self.name}({curent_index}).png'
+            if not os.path.exists(fname):
+                plt.savefig(fname)
+                break
             else:
-                try:
-                    plt.plot(self.x, self.y, 'r', self.x, y_approx, 'g')  # r, g - red, green colour
-                    plt.xlabel("x")
-                    plt.ylabel("y")
-                    plt.title("Plot of a surface free energy")
-                    plt.xticks(xnumbers)
-                    plt.yticks(ynumbers)
-                    plt.legend(['basic', 'approximate'])
-                    # plt.text(x=0.75, y=0.75, ')
-                    plt.text(0.75, 13, f'y={round(a, 2)}x+{round(b, 2)}', horizontalalignment='center',
-                             verticalalignment='center')
-                    plt.grid()
-                    plt.axis([-0.1, 2.0, 2.9, 20.1])  # [xstart, xend, ystart, yend]
-                    plt.show()
-                    plt.savefig('result_plot.png')
-                except Exception as Exc:
-                    print(Exc)
+                curent_index += 1
+                continue
+
+
+if __name__ == '__main__':
+    calc = Calculation(name='Owens-Vens', to_process=[('Water', 54.25, 26.4, 46.4), ('Formamide', 24.0, 22.4, 34.6),
+                                                      ('Ethylene Glycole', 31.5, 26.4, 21.3),
+                                                      ('α-bromnaphtalene', 1.86, 44.4, 0)])
+    calc.calculate()
