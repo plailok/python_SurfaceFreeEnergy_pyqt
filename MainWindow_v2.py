@@ -101,6 +101,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
         self.result_ui.resultTabel.setColumnCount(4)
         self.result_ui.resultTabel.setHorizontalHeaderLabels(HORIZONTAL_HEADER_RESULT)
+        self.result_ui.resultTabel.cellClicked.connect(self.__table_cell_clicked)
         self.result_ui.resultTabel.setRowCount(5)
 
     @pyqtSlot()
@@ -137,6 +138,11 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui.theoryButton.setEnabled(True)
         self.ui.settingsButton.setEnabled(True)
         self.ui.measurmentButton.setEnabled(False)
+
+    @pyqtSlot()
+    def __table_cell_clicked(self, x, y):
+        print(x, y)
+        pass
 
     @pyqtSlot()
     def __add_liquid_button_clicked(self):
@@ -187,7 +193,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.settings_ui.tableWidget.setColumnWidth(0, 260)
         if self.liquids[self.ui.theoryCombobox.currentText()]:
             liquids = self.liquids[self.ui.theoryCombobox.currentText()]
-            cur_temp = self.ui.tempCombobox.currentText()
+            cur_temp = self.ui.tempCombobox.currentText()[:-1]
             self.settings_ui.tableWidget.setRowCount(len(liquids))
             for index, liquid in enumerate(liquids):
                 item0 = QTableWidgetItem(liquid)
@@ -225,7 +231,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     def __collect_data_to_process(self):
         self.to_process = []
-        cur_temp = self.ui.tempCombobox.currentText()
+        cur_temp = self.ui.tempCombobox.currentText()[:-1]
         for index, line in enumerate(self.lineedit_list):
             polar = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][1]
             dispersive = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][0]
@@ -248,19 +254,27 @@ class MyWindow_v2(QtWidgets.QMainWindow):
     def _add_to_result_table(self):
         if len(self.result) > self.current_index:
             new_result = self.result[-1]
-            item0 = QTableWidgetItem(str(round(new_result[0], 3)))
-            item0.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.current_index, 0, item0)
-            item1 = QTableWidgetItem(str(round(new_result[1], 3)))
-            item1.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.current_index, 1, item1)
-            item2 = QTableWidgetItem(str(round(new_result[2], 3)))
-            item2.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.current_index, 2, item2)
-            item3 = QTableWidgetItem(self.ui.theoryCombobox.currentText())
-            item3.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.current_index, 3, item3)
-            self.current_index += 1
+            try:
+                item0 = QTableWidgetItem(str(round(new_result[0], 3)))
+                item1 = QTableWidgetItem(str(round(new_result[1], 3)))
+
+            except Exception:
+                item0 = QTableWidgetItem(str(new_result[0]))
+                item1 = QTableWidgetItem(str(new_result[1]))
+            finally:
+                item0.setTextAlignment(QtCore.Qt.AlignCenter)
+                self.result_ui.resultTabel.setItem(self.current_index, 0, item0)
+
+                item1.setTextAlignment(QtCore.Qt.AlignCenter)
+                self.result_ui.resultTabel.setItem(self.current_index, 1, item1)
+
+                item2 = QTableWidgetItem(str(round(new_result[2], 3)))
+                item2.setTextAlignment(QtCore.Qt.AlignCenter)
+                self.result_ui.resultTabel.setItem(self.current_index, 2, item2)
+                item3 = QTableWidgetItem(self.ui.theoryCombobox.currentText())
+                item3.setTextAlignment(QtCore.Qt.AlignCenter)
+                self.result_ui.resultTabel.setItem(self.current_index, 3, item3)
+                self.current_index += 1
 
     @pyqtSlot()
     def check_all(self):

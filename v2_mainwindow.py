@@ -147,7 +147,6 @@ class Ui_MainWindow(object):
         self.theoryCombobox.setObjectName("theoryCombobox")
         self.theoryCombobox.addItem("")
         self.theoryCombobox.addItem("")
-        self.theoryCombobox.addItem("")
         self.gridLayout_4.addWidget(self.theoryCombobox, 0, 1, 1, 1)
         self.tempCombobox = QtWidgets.QComboBox(self.innerMainFrame)
         self.tempCombobox.setStyleSheet("QComboBox{\n"
@@ -220,8 +219,7 @@ class Ui_MainWindow(object):
         self.measurmentButton.setText(_translate("MainWindow", "MEASURMENT"))
         self.ctywLabel.setText(_translate("MainWindow", "Choose Theory You Want =>"))
         self.theoryCombobox.setItemText(0, _translate("MainWindow", "Owens-Vens"))
-        self.theoryCombobox.setItemText(1, _translate("MainWindow", "Van-Oss"))
-        self.theoryCombobox.setItemText(2, _translate("MainWindow", "Zisman"))
+        self.theoryCombobox.setItemText(1, _translate("MainWindow", "Zisman"))
         self.tempCombobox.setItemText(0, _translate("MainWindow", f"23{degree}"))
         self.tempCombobox.setItemText(1, _translate("MainWindow", f"24{degree}"))
         self.tempCombobox.setItemText(2, _translate("MainWindow", f"25{degree}"))

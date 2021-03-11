@@ -33,7 +33,7 @@ class Calculation:
     def calculate(self):
         if self.name == 'Owens-Vens':
             self.method_owens_vens()
-        elif self.name == 'Zeisman':
+        elif self.name == 'Zisman':
             self.method_zeisman()
         else:
             raise NameError(f'such method {self.name} is not valid now')
@@ -124,7 +124,7 @@ class Calculation:
 
 
 if __name__ == '__main__':
-    calc = Calculation(name='Zeisman',
+    calc = Calculation(name='Zisman',
                        to_process=[('Water', 46.77, 26.4, 46.4), ('Formamide', 23.5, 22.4, 34.6),
                                    ('Ethylene Glycole', 14, 26.4, 21.3),
                                    ('α-bromnaphtalene', 1, 44.4, 0)],
