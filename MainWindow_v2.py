@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QTableWidgetItem, QTextBrowser
@@ -53,11 +54,12 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         super(MyWindow_v2, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        cur_dtime = datetime.now()
+        self.current_date = str(cur_dtime.date())
         list_theory = [self.ui.theoryCombobox.itemText(i) for i in range(self.ui.theoryCombobox.count())]
         self.liquids = {item: [] for item in list_theory}
-        print(self.liquids)
-        self.curent_index = 0
-        self.line = None
+        self.current_index = 0
+        self.image_index = None
         self.__setupUI()
         self.result = []
 
@@ -85,6 +87,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
         self.ui.theoryButton.setEnabled(False)
         self.ui.theoryCombobox.setEnabled(False)
+        self.ui.tempCombobox.setCurrentIndex(2)
         self.ui.theoryButton.clicked.connect(self.__theory_button_checked)
         self.ui.settingsButton.clicked.connect(self.__settings_button_checked)
         self.ui.measurmentButton.clicked.connect(self.__measurment_buttton_checked)
@@ -93,6 +96,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
         self.settings_ui.calculateButton.clicked.connect(self.__collect_data_to_process)
         self.settings_ui.calculateButton.setEnabled(False)
+        self.settings_ui.calculateButton.setStyleSheet("color: rgb(255, 0, 0);")
         self.settings_ui.addliquidButton.clicked.connect(self.__add_liquid_button_clicked)
 
         self.result_ui.resultTabel.setColumnCount(4)
@@ -226,38 +230,47 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             polar = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][1]
             dispersive = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][0]
             self.to_process.append((self.liquids_inuse_list[index].text(), float(line.text()), dispersive, polar))
-        self.math = Calculation(to_process=self.to_process, name=self.ui.theoryCombobox.currentText())
-        self.math.calculate()
-        self.result.append(self.math.result)
+        self.image_index = 0 if self.image_index is None else self.image_index + 1
+        math = Calculation(to_process=self.to_process,
+                           name=self.ui.theoryCombobox.currentText(),
+                           index=self.image_index)
+        math.calculate()
+        self.result.append(math.result)
+        math = None
         self._add_to_result_table()
         self._add_plot()
 
     def _add_plot(self):
-        pixmap = QPixmap('result_plot.png')
+        name = self.ui.theoryCombobox.currentText()
+        pixmap = QPixmap(f'result/{self.current_date}_{name}({self.image_index}).png')
         self.result_ui.plotLabel.setPixmap(pixmap)
 
     def _add_to_result_table(self):
-        if len(self.result) > self.curent_index:
+        if len(self.result) > self.current_index:
             new_result = self.result[-1]
-            print(new_result)
             item0 = QTableWidgetItem(str(round(new_result[0], 3)))
             item0.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.curent_index, 0, item0)
+            self.result_ui.resultTabel.setItem(self.current_index, 0, item0)
             item1 = QTableWidgetItem(str(round(new_result[1], 3)))
             item1.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.curent_index, 1, item1)
+            self.result_ui.resultTabel.setItem(self.current_index, 1, item1)
             item2 = QTableWidgetItem(str(round(new_result[2], 3)))
             item2.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.curent_index, 2, item2)
+            self.result_ui.resultTabel.setItem(self.current_index, 2, item2)
             item3 = QTableWidgetItem(self.ui.theoryCombobox.currentText())
             item3.setTextAlignment(QtCore.Qt.AlignCenter)
-            self.result_ui.resultTabel.setItem(self.curent_index, 3, item3)
-            self.curent_index += 1
+            self.result_ui.resultTabel.setItem(self.current_index, 3, item3)
+            self.current_index += 1
 
     @pyqtSlot()
     def check_all(self):
         a = [line.text() for line in self.lineedit_list if line.text() != '']
-        self.settings_ui.calculateButton.setEnabled(len(a) == self.settings_ui.liquidsGridLayout.count() // 2)
+        if len(a) == self.settings_ui.liquidsGridLayout.count() // 2:
+            self.settings_ui.calculateButton.setStyleSheet("color: rgb(250, 120, 255);")
+            self.settings_ui.calculateButton.setEnabled(True)
+        else:
+            self.settings_ui.calculateButton.setStyleSheet("color: rgb(255, 0, 0);")
+            self.settings_ui.calculateButton.setEnabled(False)
 
 
 if __name__ == '__main__':

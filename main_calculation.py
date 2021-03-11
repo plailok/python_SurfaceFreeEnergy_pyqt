@@ -20,12 +20,13 @@ PI = 3.141592653
 
 class Calculation:
 
-    def __init__(self, to_process, name):
+    def __init__(self, to_process, name, index):
         cur_dtime = datetime.now()
         self.current_date = str(cur_dtime.date())
         self.x = []
         self.y = []
         self.result = None
+        self.index = index
         self.to_process = to_process
         self.name = name
 
@@ -42,7 +43,7 @@ class Calculation:
             y1 = 0.5 + (math.cos(angle_radiant)) / 2
             y2 = (value[2] + value[3]) / math.sqrt(value[2])
             res_y = y1 * y2
-            self.y.append(res_y)
+            self.y.append(round(res_y, 2))
             self.x.append(round(result_x, 2))
         self.x.sort()
         self.y.sort()
@@ -71,21 +72,22 @@ class Calculation:
         plt.grid()
         plt.axis([0, 2.0, 2.9, self.y[-1] + 1])  # [xstart, xend, ystart, yend]
         self.save_fig()
+        plt.gcf().clear()
 
     def save_fig(self):
-        curent_index = 0
         while True:
-            fname = f'result/{self.current_date}_{self.name}({curent_index}).png'
+            fname = f'result/{self.current_date}_{self.name}({self.index}).png'
             if not os.path.exists(fname):
                 plt.savefig(fname)
                 break
             else:
-                curent_index += 1
-                continue
+                break
 
 
 if __name__ == '__main__':
-    calc = Calculation(name='Owens-Vens', to_process=[('Water', 54.25, 26.4, 46.4), ('Formamide', 24.0, 22.4, 34.6),
-                                                      ('Ethylene Glycole', 31.5, 26.4, 21.3),
-                                                      ('α-bromnaphtalene', 1.86, 44.4, 0)])
+    calc = Calculation(name='Owens-Vens',
+                       to_process=[('Water', 54.25, 26.4, 46.4), ('Formamide', 24.0, 22.4, 34.6),
+                                   ('Ethylene Glycole', 31.5, 26.4, 21.3),
+                                   ('α-bromnaphtalene', 1.86, 44.4, 0)],
+                       index=1)
     calc.calculate()
