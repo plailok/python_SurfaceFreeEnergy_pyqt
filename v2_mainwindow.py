@@ -212,6 +212,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        degree = '\u00B0'
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.settingsButton.setText(_translate("MainWindow", "SETTINGS"))
@@ -221,12 +222,12 @@ class Ui_MainWindow(object):
         self.theoryCombobox.setItemText(0, _translate("MainWindow", "Owens-Vens"))
         self.theoryCombobox.setItemText(1, _translate("MainWindow", "Van-Oss"))
         self.theoryCombobox.setItemText(2, _translate("MainWindow", "Zisman"))
-        self.tempCombobox.setItemText(0, _translate("MainWindow", "23"))
-        self.tempCombobox.setItemText(1, _translate("MainWindow", "24"))
-        self.tempCombobox.setItemText(2, _translate("MainWindow", "25"))
-        self.tempCombobox.setItemText(3, _translate("MainWindow", "26"))
-        self.tempCombobox.setItemText(4, _translate("MainWindow", "27"))
-        self.tempCombobox.setItemText(5, _translate("MainWindow", "28"))
+        self.tempCombobox.setItemText(0, _translate("MainWindow", f"23{degree}"))
+        self.tempCombobox.setItemText(1, _translate("MainWindow", f"24{degree}"))
+        self.tempCombobox.setItemText(2, _translate("MainWindow", f"25{degree}"))
+        self.tempCombobox.setItemText(3, _translate("MainWindow", f"26{degree}"))
+        self.tempCombobox.setItemText(4, _translate("MainWindow", f"27{degree}"))
+        self.tempCombobox.setItemText(5, _translate("MainWindow", f"28{degree}"))
         self.tempLabel.setText(_translate("MainWindow", "Chose Temperature You Want =>"))
 
 

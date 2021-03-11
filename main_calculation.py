@@ -33,8 +33,47 @@ class Calculation:
     def calculate(self):
         if self.name == 'Owens-Vens':
             self.method_owens_vens()
+        elif self.name == 'Zeisman':
+            self.method_zeisman()
         else:
             raise NameError(f'such method {self.name} is not valid now')
+
+    def method_zeisman(self):
+        for value in self.to_process:
+            surface_tension = value[2] + value[3]
+            self.x.append(surface_tension)
+            angle_radiant = (float(value[1]) * math.pi) / 180
+            cos_thetta = math.cos(angle_radiant)
+            self.y.append(cos_thetta)
+        self.x.sort()
+        self.y.sort()
+        x = np.array(self.x)
+        y = np.array(self.y)
+        a, b = np.polyfit(x, y, 1)
+        y1 = np.ones(len(x))
+        xnumbers = np.linspace(min(self.x), max(self.x), 10)
+        ynumbers = np.linspace(min(self.y), max(self.y), 10)
+
+        plt.plot(x, y, 'r', x, y1, 'g', x, a * x + b, 'b')
+        plt.xlabel("Surface Tension")
+        plt.ylabel(r"Cos$\beta$")
+        plt.title("Plot of a surface free energy")
+        plt.xticks(xnumbers)
+        plt.yticks(ynumbers)
+        plt.legend(['basic', 'cos = 1', 'approximate'])
+        plt.text(0.5, self.y[-1], f'y={round(a, 2)}x+{round(b, 2)}', horizontalalignment='center',
+                 verticalalignment='center')
+        plt.grid()
+
+        plt.axis([min(self.x) - 2, max(self.x) + 2, min(self.y), 1 + 0.05])
+        result = (1 - b) / a
+        self.result = ('Null', 'Null', result)
+        self.save_fig()
+        plt.show()
+        plt.gcf().clear()
+
+    def method_van_oss(self):
+        pass
 
     def method_owens_vens(self):
         for value in self.to_process:
@@ -60,7 +99,7 @@ class Calculation:
         # values for making ticks in x and y axis
         xnumbers = np.linspace(0, 7, 15)
         ynumbers = np.linspace(0, 20, 11)
-        plt.plot(x, y, 'r', x, a * x + b, 'g')  # r, g - red, green colour
+        plt.plot(x, y, 'r', x, a * x + b, 'b')  # r, g - red, green colour
         plt.xlabel("x")
         plt.ylabel("y")
         plt.title("Plot of a surface free energy")
@@ -85,9 +124,9 @@ class Calculation:
 
 
 if __name__ == '__main__':
-    calc = Calculation(name='Owens-Vens',
-                       to_process=[('Water', 54.25, 26.4, 46.4), ('Formamide', 24.0, 22.4, 34.6),
-                                   ('Ethylene Glycole', 31.5, 26.4, 21.3),
-                                   ('α-bromnaphtalene', 1.86, 44.4, 0)],
+    calc = Calculation(name='Zeisman',
+                       to_process=[('Water', 46.77, 26.4, 46.4), ('Formamide', 23.5, 22.4, 34.6),
+                                   ('Ethylene Glycole', 14, 26.4, 21.3),
+                                   ('α-bromnaphtalene', 1, 44.4, 0)],
                        index=1)
     calc.calculate()
