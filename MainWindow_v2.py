@@ -53,7 +53,9 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         super(MyWindow_v2, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.liquids = {}
+        list_theory = [self.ui.theoryCombobox.itemText(i) for i in range(self.ui.theoryCombobox.count())]
+        self.liquids = {item: [] for item in list_theory}
+        print(self.liquids)
         self.curent_index = 0
         self.line = None
         self.__setupUI()
@@ -87,6 +89,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui.settingsButton.clicked.connect(self.__settings_button_checked)
         self.ui.measurmentButton.clicked.connect(self.__measurment_buttton_checked)
         self.ui.theoryCombobox.currentTextChanged.connect(self.__theory_chose)
+        self.ui.tempCombobox.currentTextChanged.connect(self.__fullfill_table)
 
         self.settings_ui.calculateButton.clicked.connect(self.__collect_data_to_process)
         self.settings_ui.calculateButton.setEnabled(False)
@@ -160,7 +163,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             new_label.setFixedHeight(30)
             new_label.setAlignment(QtCore.Qt.AlignCenter)
             new_lineedit = QtWidgets.QLineEdit()
-            new_lineedit.editingFinished.connect(self.check_all)
+            new_lineedit.textChanged.connect(self.check_all)
             self.lineedit_list.append(new_lineedit)
             new_lineedit.setAlignment(QtCore.Qt.AlignCenter)
             reg_ex = QRegExp("[0-9]+.[0-9]{,3}")
@@ -223,10 +226,9 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             polar = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][1]
             dispersive = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][0]
             self.to_process.append((self.liquids_inuse_list[index].text(), float(line.text()), dispersive, polar))
-        self.math = Calculation(self.to_process)
+        self.math = Calculation(to_process=self.to_process, name=self.ui.theoryCombobox.currentText())
         self.math.calculate()
         self.result.append(self.math.result)
-        print(self.to_process)
         self._add_to_result_table()
         self._add_plot()
 
@@ -252,16 +254,10 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             self.result_ui.resultTabel.setItem(self.curent_index, 3, item3)
             self.curent_index += 1
 
+    @pyqtSlot()
     def check_all(self):
-        print(self.curent)
-        current = 0
-        for line in self.lineedit_list:
-            if line.text() != '':
-                current += 1
-        if current == len(self.lineedit_list):
-            self.settings_ui.calculateButton.setEnabled(True)
-        else:
-            self.settings_ui.calculateButton.setEnabled(False)
+        a = [line.text() for line in self.lineedit_list if line.text() != '']
+        self.settings_ui.calculateButton.setEnabled(len(a) == self.settings_ui.liquidsGridLayout.count() // 2)
 
 
 if __name__ == '__main__':
