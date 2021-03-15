@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1246</width>
-    <height>564</height>
+    <height>566</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,6 +21,20 @@
 QMainWindow{
 	background-color:rgb(255,255,255)
 }
+QMenuBar {
+    background-color: rgb(80,80,80);
+    color: rgb(150,255,150);
+    border: 1px solid ;
+}
+QMenuBar::item {
+	background-color: rgb(80,80,80);
+    color: rgb(255,255,255);
+}
+QMenuBar::item::selected {
+	background-color: rgb(30,30,30);
+}
+QAction{
+	color:rgb(200,150,100);}
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -382,11 +396,116 @@ QFrame{
      <x>0</x>
      <y>0</y>
      <width>1246</width>
-     <height>26</height>
+     <height>28</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpenProject"/>
+    <addaction name="actionSave_Project_As"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QMenu" name="menuAdd">
+     <property name="title">
+      <string>Add</string>
+     </property>
+     <addaction name="actionConstants"/>
+     <addaction name="actionTemperature"/>
+     <addaction name="actionLiquid"/>
+     <addaction name="actionAdd_Theory_beta"/>
+    </widget>
+    <addaction name="actionColor_Scheme"/>
+    <addaction name="menuAdd"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuAbout"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew">
+   <property name="text">
+    <string>New Project</string>
+   </property>
+  </action>
+  <action name="actionOpenProject">
+   <property name="text">
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project_As">
+   <property name="text">
+    <string>Save Project As</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+  <action name="actionAdd_to_project">
+   <property name="text">
+    <string>Add to project</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionColor_Scheme">
+   <property name="text">
+    <string>Color Scheme</string>
+   </property>
+  </action>
+  <action name="actionAdd_Constants">
+   <property name="text">
+    <string>Add Constants</string>
+   </property>
+  </action>
+  <action name="actionAdd_Temperature">
+   <property name="text">
+    <string>Add Temperature</string>
+   </property>
+  </action>
+  <action name="actionConstants">
+   <property name="text">
+    <string>Constants</string>
+   </property>
+  </action>
+  <action name="actionTemperature">
+   <property name="text">
+    <string>Temperature</string>
+   </property>
+  </action>
+  <action name="actionLiquid">
+   <property name="text">
+    <string>Liquid</string>
+   </property>
+  </action>
+  <action name="actionAdd_Theory_beta">
+   <property name="text">
+    <string>Add Theory (beta)</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
