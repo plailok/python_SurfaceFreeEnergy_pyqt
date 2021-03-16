@@ -150,7 +150,6 @@ class Ui_MainWindow(object):
         self.theoryCombobox.setObjectName("theoryCombobox")
         self.theoryCombobox.addItem("")
         self.theoryCombobox.addItem("")
-        self.theoryCombobox.addItem("")
         self.gridLayout_4.addWidget(self.theoryCombobox, 0, 1, 1, 1)
         self.tempCombobox = QtWidgets.QComboBox(self.innerMainFrame)
         self.tempCombobox.setStyleSheet("QComboBox{\n"
@@ -266,21 +265,21 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        degree = '\u00B0'
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.settingsButton.setText(_translate("MainWindow", "SETTINGS"))
         self.theoryButton.setText(_translate("MainWindow", "READ THEORY "))
         self.measurmentButton.setText(_translate("MainWindow", "MEASURMENT"))
         self.ctywLabel.setText(_translate("MainWindow", "Choose Theory You Want =>"))
-        self.theoryCombobox.setItemText(0, _translate("MainWindow", "Van-Oss"))
-        self.theoryCombobox.setItemText(1, _translate("MainWindow", "Zeisman"))
-        self.theoryCombobox.setItemText(2, _translate("MainWindow", "Groompler"))
-        self.tempCombobox.setItemText(0, _translate("MainWindow", "23"))
-        self.tempCombobox.setItemText(1, _translate("MainWindow", "24"))
-        self.tempCombobox.setItemText(2, _translate("MainWindow", "25"))
-        self.tempCombobox.setItemText(3, _translate("MainWindow", "26"))
-        self.tempCombobox.setItemText(4, _translate("MainWindow", "27"))
-        self.tempCombobox.setItemText(5, _translate("MainWindow", "28"))
+        self.theoryCombobox.setItemText(0, _translate("MainWindow", "Owens-Vens"))
+        self.theoryCombobox.setItemText(1, _translate("MainWindow", "Zisman"))
+        self.tempCombobox.setItemText(0, _translate("MainWindow", "23\u00B0"))
+        self.tempCombobox.setItemText(1, _translate("MainWindow", "24\u00B0"))
+        self.tempCombobox.setItemText(2, _translate("MainWindow", "25\u00B0"))
+        self.tempCombobox.setItemText(3, _translate("MainWindow", "26\u00B0"))
+        self.tempCombobox.setItemText(4, _translate("MainWindow", "27\u00B0"))
+        self.tempCombobox.setItemText(5, _translate("MainWindow", "28\u00B0"))
         self.tempLabel.setText(_translate("MainWindow", "Chose Temperature You Want =>"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
