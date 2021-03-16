@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f813ea2-4732-49cd-87f1-33bc24531012" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ProjectHolder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/result_data" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2_mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/v2_mainwindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectHolder.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectHolder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config" beforeDir="false" afterPath="$PROJECT_DIR$/config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +244,8 @@
       <workItem from="1615813525406" duration="691000" />
       <workItem from="1615816284687" duration="183000" />
       <workItem from="1615829533385" duration="662000" />
-      <workItem from="1615847548045" duration="5341000" />
+      <workItem from="1615847548045" duration="5361000" />
+      <workItem from="1615918730587" duration="2853000" />
     </task>
     <task id="LOCAL-00001" summary="add new windows">
       <created>1614845451770</created>
@@ -395,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615829722974</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="add ProjectHolder file">
+      <created>1615854229094</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1615854229094</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,7 +425,8 @@
     <MESSAGE value="added zeisman method" />
     <MESSAGE value="gui v1.0 stable" />
     <MESSAGE value="added topbar to main window" />
-    <option name="LAST_COMMIT_MESSAGE" value="added topbar to main window" />
+    <MESSAGE value="add ProjectHolder file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ProjectHolder file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -445,7 +452,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$ProjectHolder.coverage" NAME="ProjectHolder Coverage Results" MODIFIED="1615854210607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$ProjectHolder.coverage" NAME="ProjectHolder Coverage Results" MODIFIED="1615924631699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow_v2.coverage" NAME="MainWindow_v2 Coverage Results" MODIFIED="1615850654862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$probe.coverage" NAME="probe Coverage Results" MODIFIED="1615206713629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$main_calculation.coverage" NAME="main_calculation Coverage Results" MODIFIED="1615471832847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
