@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1248, 443)
+        Form.resize(882, 400)
         Form.setMinimumSize(QtCore.QSize(0, 400))
         Form.setStyleSheet("QWidget{\n"
 "    background-color: rgb(120, 120, 120);\n"
@@ -38,23 +38,46 @@ class Ui_Form(object):
 "    padding: 6px;\n"
 "}\n"
 "QTableWidget{\n"
+"    background-color: rgb(120, 120, 120);\n"
 "    color: rgb(250, 120, 255);\n"
 "    font: bold 14px;\n"
 "}")
-        self.gridLayout = QtWidgets.QGridLayout(Form)
+        self.gridLayout_2 = QtWidgets.QGridLayout(Form)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.resultTabel = QtWidgets.QTableWidget(Form)
-        self.resultTabel.setObjectName("resultTabel")
-        self.resultTabel.setColumnCount(0)
-        self.resultTabel.setRowCount(0)
-        self.gridLayout.addWidget(self.resultTabel, 0, 0, 1, 1)
+        self.resultTable = QtWidgets.QTableWidget(Form)
+        self.resultTable.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.resultTable.sizePolicy().hasHeightForWidth())
+        self.resultTable.setSizePolicy(sizePolicy)
+        self.resultTable.setMinimumSize(QtCore.QSize(0, 69))
+        self.resultTable.setMaximumSize(QtCore.QSize(167777, 167777))
+        self.resultTable.setMouseTracking(True)
+        self.resultTable.setLineWidth(2)
+        self.resultTable.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.resultTable.setAlternatingRowColors(True)
+        self.resultTable.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.resultTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.resultTable.setTextElideMode(QtCore.Qt.ElideMiddle)
+        self.resultTable.setObjectName("resultTable")
+        self.resultTable.setColumnCount(0)
+        self.resultTable.setRowCount(0)
+        self.resultTable.horizontalHeader().setStretchLastSection(True)
+        self.resultTable.verticalHeader().setVisible(True)
+        self.gridLayout.addWidget(self.resultTable, 0, 0, 1, 1, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.plotLabel = QtWidgets.QLabel(Form)
         self.plotLabel.setScaledContents(True)
         self.plotLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.plotLabel.setObjectName("plotLabel")
         self.gridLayout.addWidget(self.plotLabel, 0, 1, 1, 1)
+        self.gridLayout.setColumnMinimumWidth(0, 1)
+        self.gridLayout.setColumnMinimumWidth(1, 1)
         self.gridLayout.setColumnStretch(0, 1)
         self.gridLayout.setColumnStretch(1, 1)
+        self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -62,7 +85,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.resultTabel.setSortingEnabled(True)
+        self.resultTable.setSortingEnabled(True)
         self.plotLabel.setText(_translate("Form", "PLOT WILL BE THERE"))
 
 

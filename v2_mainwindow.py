@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1246, 564)
+        MainWindow.resize(1246, 566)
         MainWindow.setStyleSheet("QFrame{\n"
                                  "    background-color: rgb(120, 120, 120);\n"
                                  "    border-radius: 25px;\n"
@@ -22,9 +22,20 @@ class Ui_MainWindow(object):
                                  "QMainWindow{\n"
                                  "    background-color:rgb(255,255,255)\n"
                                  "}\n"
-                                 "QAction{\n"
-                                 "    background-color:rbg(150,150,200)\n"
+                                 "QMenuBar {\n"
+                                 "    background-color: rgb(80,80,80);\n"
+                                 "    color: rgb(150,255,150);\n"
+                                 "    border: 1px solid ;\n"
                                  "}\n"
+                                 "QMenuBar::item {\n"
+                                 "    background-color: rgb(80,80,80);\n"
+                                 "    color: rgb(255,255,255);\n"
+                                 "}\n"
+                                 "QMenuBar::item::selected {\n"
+                                 "    background-color: rgb(30,30,30);\n"
+                                 "}\n"
+                                 "QAction{\n"
+                                 "    color:rgb(200,150,100);}\n"
                                  "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -203,7 +214,7 @@ class Ui_MainWindow(object):
         self.gridLayout_6.addLayout(self.resultGridLayout, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1246, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1246, 23))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -223,10 +234,10 @@ class Ui_MainWindow(object):
         self.actionNew.setObjectName("actionNew")
         self.actionOpenProject = QtWidgets.QAction(MainWindow)
         self.actionOpenProject.setObjectName("actionOpenProject")
-        self.actionSave_Project_As = QtWidgets.QAction(MainWindow)
-        self.actionSave_Project_As.setObjectName("actionSave_Project_As")
-        self.actionSave_Project = QtWidgets.QAction(MainWindow)
-        self.actionSave_Project.setObjectName("actionSave_Project")
+        self.actionSaveProjectAs = QtWidgets.QAction(MainWindow)
+        self.actionSaveProjectAs.setObjectName("actionSaveProjectAs")
+        self.actionSaveProject = QtWidgets.QAction(MainWindow)
+        self.actionSaveProject.setObjectName("actionSaveProject")
         self.actionAdd_to_project = QtWidgets.QAction(MainWindow)
         self.actionAdd_to_project.setObjectName("actionAdd_to_project")
         self.actionExit = QtWidgets.QAction(MainWindow)
@@ -243,17 +254,20 @@ class Ui_MainWindow(object):
         self.actionTemperature.setObjectName("actionTemperature")
         self.actionLiquid = QtWidgets.QAction(MainWindow)
         self.actionLiquid.setObjectName("actionLiquid")
-        self.actionAdd_Theory_beta = QtWidgets.QAction(MainWindow)
-        self.actionAdd_Theory_beta.setObjectName("actionAdd_Theory_beta")
+        self.actionAddTheory_beta = QtWidgets.QAction(MainWindow)
+        self.actionAddTheory_beta.setObjectName("actionAddTheory_beta")
+        self.actionSave_Result = QtWidgets.QAction(MainWindow)
+        self.actionSave_Result.setObjectName("actionSave_Result")
         self.menuFile.addAction(self.actionNew)
+        self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionOpenProject)
-        self.menuFile.addAction(self.actionSave_Project_As)
-        self.menuFile.addAction(self.actionSave_Project)
+        self.menuFile.addAction(self.actionSave_Result)
+        self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionExit)
         self.menuAdd.addAction(self.actionConstants)
         self.menuAdd.addAction(self.actionTemperature)
         self.menuAdd.addAction(self.actionLiquid)
-        self.menuAdd.addAction(self.actionAdd_Theory_beta)
+        self.menuAdd.addAction(self.actionAddTheory_beta)
         self.menuSettings.addAction(self.actionColor_Scheme)
         self.menuSettings.addAction(self.menuAdd.menuAction())
         self.menubar.addAction(self.menuFile.menuAction())
@@ -274,22 +288,22 @@ class Ui_MainWindow(object):
         self.ctywLabel.setText(_translate("MainWindow", "Choose Theory You Want =>"))
         self.theoryCombobox.setItemText(0, _translate("MainWindow", "Owens-Vens"))
         self.theoryCombobox.setItemText(1, _translate("MainWindow", "Zisman"))
-        self.tempCombobox.setItemText(0, _translate("MainWindow", "23\u00B0"))
-        self.tempCombobox.setItemText(1, _translate("MainWindow", "24\u00B0"))
-        self.tempCombobox.setItemText(2, _translate("MainWindow", "25\u00B0"))
-        self.tempCombobox.setItemText(3, _translate("MainWindow", "26\u00B0"))
-        self.tempCombobox.setItemText(4, _translate("MainWindow", "27\u00B0"))
-        self.tempCombobox.setItemText(5, _translate("MainWindow", "28\u00B0"))
+        self.tempCombobox.setItemText(0, _translate("MainWindow", f"23{degree}"))
+        self.tempCombobox.setItemText(1, _translate("MainWindow", f"24{degree}"))
+        self.tempCombobox.setItemText(2, _translate("MainWindow", f"25{degree}"))
+        self.tempCombobox.setItemText(3, _translate("MainWindow", f"26{degree}"))
+        self.tempCombobox.setItemText(4, _translate("MainWindow", f"27{degree}"))
+        self.tempCombobox.setItemText(5, _translate("MainWindow", f"28{degree}"))
         self.tempLabel.setText(_translate("MainWindow", "Chose Temperature You Want =>"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
         self.menuAdd.setTitle(_translate("MainWindow", "Add"))
         self.menuAbout.setTitle(_translate("MainWindow", "Help"))
         self.menuHelp.setTitle(_translate("MainWindow", "About"))
-        self.actionNew.setText(_translate("MainWindow", "New Project"))
-        self.actionOpenProject.setText(_translate("MainWindow", "Open Project"))
-        self.actionSave_Project_As.setText(_translate("MainWindow", "Save Project As"))
-        self.actionSave_Project.setText(_translate("MainWindow", "Save Project"))
+        self.actionNew.setText(_translate("MainWindow", "New"))
+        self.actionOpenProject.setText(_translate("MainWindow", "Open Result"))
+        self.actionSaveProjectAs.setText(_translate("MainWindow", "Save Project As"))
+        self.actionSaveProject.setText(_translate("MainWindow", "Save Project"))
         self.actionAdd_to_project.setText(_translate("MainWindow", "Add to project"))
         self.actionExit.setText(_translate("MainWindow", "Exit"))
         self.actionColor_Scheme.setText(_translate("MainWindow", "Color Scheme"))
@@ -298,7 +312,8 @@ class Ui_MainWindow(object):
         self.actionConstants.setText(_translate("MainWindow", "Constants"))
         self.actionTemperature.setText(_translate("MainWindow", "Temperature"))
         self.actionLiquid.setText(_translate("MainWindow", "Liquid"))
-        self.actionAdd_Theory_beta.setText(_translate("MainWindow", "Add Theory (beta)"))
+        self.actionAddTheory_beta.setText(_translate("MainWindow", "Add Theory (beta)"))
+        self.actionSave_Result.setText(_translate("MainWindow", "Save Result"))
 
 
 if __name__ == "__main__":

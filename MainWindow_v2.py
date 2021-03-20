@@ -11,41 +11,10 @@ from result_widget import Ui_Form as result_ui
 from setting_widget import Ui_Form as setting_ui
 from v2_mainwindow import Ui_MainWindow
 from dialog import Ui_Dialog
+from config import *
 
 from main_calculation import Calculation
 import sys
-
-THEORY = '''https://www.ossila.com/pages/a-guide-to-surface-energy#:~:text=One%20of%20the%20most%20basic, 
-Zisman%20model%2C%20published%20in%201964.&text=This%20model%20assumes%20that%20the,
-as%20the%20critical%20surface%20tension '''
-LIQUIDS = ['Water', 'Formamide', 'Ethylene Glycole', '\u03B1-bromnaphtalene']
-HORIZONTAL_HEADER_SETTING = ['Liquid', 'Polar', 'Dispersive']
-HORIZONTAL_HEADER_RESULT = ['Dispersive', 'Polar', 'Total', 'Method']
-
-TEMPERATURE = {'Water': {'21': ('w111', 111),
-                         '22': ('w222', 222),
-                         '23': ('w333', 333),
-                         '24': ('w444', 444),
-                         '25': (26.4, 46.4),
-                         '26': ('w666', 666)},
-               'Formamide': {'21': ('f111', 111),
-                             '22': ('f222', 222),
-                             '23': ('f333', 333),
-                             '24': ('f444', 444),
-                             '25': (22.4, 34.6),
-                             '26': ('f666', 666)},
-               'Ethylene Glycole': {'21': ('e111', 111),
-                                    '22': ('e222', 222),
-                                    '23': ('e333', 333),
-                                    '24': ('e444', 444),
-                                    '25': (26.4, 21.3),
-                                    '26': ('e666', 666)},
-               '\u03B1-bromnaphtalene': {'21': ('a111', 111),
-                                         '22': ('a222', 222),
-                                         '23': ('a333', 333),
-                                         '24': ('a444', 444),
-                                         '25': (44.4, 0),
-                                         '26': ('a666', 666)}}
 
 
 class MyWindow_v2(QtWidgets.QMainWindow):
@@ -99,10 +68,9 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.settings_ui.calculateButton.setStyleSheet("color: rgb(255, 0, 0);")
         self.settings_ui.addliquidButton.clicked.connect(self.__add_liquid_button_clicked)
 
-        self.result_ui.resultTabel.setColumnCount(4)
-        self.result_ui.resultTabel.setHorizontalHeaderLabels(HORIZONTAL_HEADER_RESULT)
-        self.result_ui.resultTabel.cellClicked.connect(self.__table_cell_clicked)
-        self.result_ui.resultTabel.setRowCount(5)
+        self.result_ui.resultTable.setColumnCount(4)
+        self.result_ui.resultTable.setHorizontalHeaderLabels(HORIZONTAL_HEADER_RESULT)
+        self.result_ui.resultTable.setRowCount(5)
 
     @pyqtSlot()
     def __theory_button_checked(self):
@@ -138,11 +106,6 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui.theoryButton.setEnabled(True)
         self.ui.settingsButton.setEnabled(True)
         self.ui.measurmentButton.setEnabled(False)
-
-    @pyqtSlot()
-    def __table_cell_clicked(self, x, y):
-        print(x, y)
-        pass
 
     @pyqtSlot()
     def __add_liquid_button_clicked(self):
@@ -219,6 +182,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def __theory_chose(self):
+        self.settings_ui.calculateButton.setStyleSheet("color: rgb(255, 0, 0);")
         try:
             self.liquids[self.ui.theoryCombobox.currentText()]
         except Exception:
@@ -237,12 +201,14 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             dispersive = TEMPERATURE[self.liquids_inuse_list[index].text()][cur_temp][0]
             self.to_process.append((self.liquids_inuse_list[index].text(), float(line.text()), dispersive, polar))
         self.image_index = 0 if self.image_index is None else self.image_index + 1
+        self.__process()
+
+    def __process(self):
         math = Calculation(to_process=self.to_process,
                            name=self.ui.theoryCombobox.currentText(),
                            index=self.image_index)
         math.calculate()
         self.result.append(math.result)
-        math = None
         self._add_to_result_table()
         self._add_plot()
 
@@ -254,6 +220,8 @@ class MyWindow_v2(QtWidgets.QMainWindow):
     def _add_to_result_table(self):
         if len(self.result) > self.current_index:
             new_result = self.result[-1]
+            self.result_ui.resultTable.setRowCount(len(self.result)) if len(
+                self.result) > 4 else self.result_ui.resultTable.setRowCount(5)
             try:
                 item0 = QTableWidgetItem(str(round(new_result[0], 3)))
                 item1 = QTableWidgetItem(str(round(new_result[1], 3)))
@@ -263,17 +231,17 @@ class MyWindow_v2(QtWidgets.QMainWindow):
                 item1 = QTableWidgetItem(str(new_result[1]))
             finally:
                 item0.setTextAlignment(QtCore.Qt.AlignCenter)
-                self.result_ui.resultTabel.setItem(self.current_index, 0, item0)
+                self.result_ui.resultTable.setItem(self.current_index, 0, item0)
 
                 item1.setTextAlignment(QtCore.Qt.AlignCenter)
-                self.result_ui.resultTabel.setItem(self.current_index, 1, item1)
+                self.result_ui.resultTable.setItem(self.current_index, 1, item1)
 
                 item2 = QTableWidgetItem(str(round(new_result[2], 3)))
                 item2.setTextAlignment(QtCore.Qt.AlignCenter)
-                self.result_ui.resultTabel.setItem(self.current_index, 2, item2)
+                self.result_ui.resultTable.setItem(self.current_index, 2, item2)
                 item3 = QTableWidgetItem(self.ui.theoryCombobox.currentText())
                 item3.setTextAlignment(QtCore.Qt.AlignCenter)
-                self.result_ui.resultTabel.setItem(self.current_index, 3, item3)
+                self.result_ui.resultTable.setItem(self.current_index, 3, item3)
                 self.current_index += 1
 
     @pyqtSlot()
@@ -285,6 +253,10 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         else:
             self.settings_ui.calculateButton.setStyleSheet("color: rgb(255, 0, 0);")
             self.settings_ui.calculateButton.setEnabled(False)
+
+    @pyqtSlot()
+    def save_result(self):
+        print(self.result)
 
 
 if __name__ == '__main__':

@@ -5,48 +5,15 @@ import configparser
 
 class ProjectHolder:
 
-    def __init__(self, folder_name='.', resultfile_name='result_data', config='config'):
+    def __init__(self, config='config', result='result_data'):
+        self.config = config
+        self.result_data = result
         conf = configparser.RawConfigParser()
-        conf.read(config)
-        index_z = int(conf.get('project', 'Zisman_index'))
-        print(type(conf.get('result', 'liquids1')))
-        conf.set('project', 'Zisman_index', str(index_z + 1))
-        with open(config, 'w') as c:
-            conf.write(c)
-
-        # self.result = []
-        # self.folder = folder_name
-        # self.resultfile = resultfile_name
-        # self.indexes = []
-        # self.__init_config(config, folder_name)
-        # self.__init_resultfile(resultfile_name)
-        # print(f'Liquids => {self.liquids}, Data => {self.result}')
-        # print(
-        #     f'Name => {self.project_name}, Total => {self.indexes[-1]}, Owens => {self.indexes[0]}, '
-        #     f'Zisman => {self.indexes[1]}')
-        #
-        # self.load()
-
-    def __init_resultfile(self, resultfile_name):
-        with open(resultfile_name, 'r+') as f:
-            data = f.readlines()
-            for line in data:
-                if line.split(',')[0] == 'LIQUIDS':
-                    self.liquids = line.split(',')[1:-1]
-                    print('No digits', line[:-1])
-                else:
-                    self.result.append(line.split(',')[:-1])
-                    print('Digits', line[:-1])
-
-    def __init_config(self, config, folder_name):
-        with open(config, 'r+') as f:
-            data = f.readlines()
-            for line in data:
-                info = line[:-1].split(' ')
-                if len(info) == 2:
-                    self.project_name = folder_name if folder_name is not None else self.__get_project_name(info)
-                elif len(info) == 3:
-                    self.indexes.append(info[2])
+        conf.read(self.config)
+        self.index_zisman = conf.getint('project', 'zisman_index')
+        self.index_owens = conf.getint('project', 'owens_index')
+        self.index_total = conf.getint('project', 'total_index')
+        print(self.index_total, self.index_owens, self.index_zisman)
 
     def save(self):
         with open(f'{self.folder}/config') as config:
