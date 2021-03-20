@@ -72,6 +72,8 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.result_ui.resultTable.setHorizontalHeaderLabels(HORIZONTAL_HEADER_RESULT)
         self.result_ui.resultTable.setRowCount(5)
 
+
+
     @pyqtSlot()
     def __theory_button_checked(self):
         self.Form.close()
