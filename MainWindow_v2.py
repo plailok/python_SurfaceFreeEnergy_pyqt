@@ -15,6 +15,7 @@ from config import *
 
 from main_calculation import Calculation
 import sys
+import os
 
 
 class MyWindow_v2(QtWidgets.QMainWindow):
@@ -24,6 +25,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         cur_dtime = datetime.now()
+        self.fname = None
         self.current_date = str(cur_dtime.date())
         list_theory = [self.ui.theoryCombobox.itemText(i) for i in range(self.ui.theoryCombobox.count())]
         self.liquids = {item: [] for item in list_theory}
@@ -54,6 +56,11 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui.resultGridLayout.addWidget(self.Result)
         self.Result.close()
 
+        # action menu clicked
+        self.ui.actionSave_Result.triggered.connect(self.save_result)
+        self.ui.actionOpenProject.triggered.connect(self.load_result)
+        self.ui.actionNew.triggered.connect(self.new)
+
         self.ui.theoryButton.setEnabled(False)
         self.ui.theoryCombobox.setEnabled(False)
         self.ui.tempCombobox.setCurrentIndex(2)
@@ -71,8 +78,6 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.result_ui.resultTable.setColumnCount(4)
         self.result_ui.resultTable.setHorizontalHeaderLabels(HORIZONTAL_HEADER_RESULT)
         self.result_ui.resultTable.setRowCount(5)
-
-
 
     @pyqtSlot()
     def __theory_button_checked(self):
@@ -182,6 +187,10 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.settings_ui.tableWidget.clear()
         self.settings_ui.tableWidget.setRowCount(0)
 
+    def __clear_table_on_result_layout(self):
+        self.result_ui.resultTable.clear()
+        self.result_ui.resultTable.setRowCount(0)
+
     @pyqtSlot()
     def __theory_chose(self):
         self.settings_ui.calculateButton.setStyleSheet("color: rgb(255, 0, 0);")
@@ -214,11 +223,24 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self._add_to_result_table()
         self._add_plot()
 
+    @pyqtSlot()
     def _add_plot(self):
         name = self.ui.theoryCombobox.currentText()
         pixmap = QPixmap(f'result/{self.current_date}_{name}({self.image_index}).png')
         self.result_ui.plotLabel.setPixmap(pixmap)
 
+    @pyqtSlot()
+    def _load_to_result_table(self):
+        self.current_index = 0
+        for value in self.result:
+            for index, val in enumerate(value):
+                val = str(round(float(val), 3)) if index != 3 else val
+                item = QTableWidgetItem(val)
+                item.setTextAlignment(QtCore.Qt.AlignCenter)
+                self.result_ui.resultTable.setItem(self.current_index, index, item)
+            self.current_index += 1
+
+    @pyqtSlot()
     def _add_to_result_table(self):
         if len(self.result) > self.current_index:
             new_result = self.result[-1]
@@ -227,21 +249,18 @@ class MyWindow_v2(QtWidgets.QMainWindow):
             try:
                 item0 = QTableWidgetItem(str(round(new_result[0], 3)))
                 item1 = QTableWidgetItem(str(round(new_result[1], 3)))
-
             except Exception:
                 item0 = QTableWidgetItem(str(new_result[0]))
                 item1 = QTableWidgetItem(str(new_result[1]))
             finally:
                 item0.setTextAlignment(QtCore.Qt.AlignCenter)
                 self.result_ui.resultTable.setItem(self.current_index, 0, item0)
-
                 item1.setTextAlignment(QtCore.Qt.AlignCenter)
                 self.result_ui.resultTable.setItem(self.current_index, 1, item1)
-
                 item2 = QTableWidgetItem(str(round(new_result[2], 3)))
                 item2.setTextAlignment(QtCore.Qt.AlignCenter)
                 self.result_ui.resultTable.setItem(self.current_index, 2, item2)
-                item3 = QTableWidgetItem(self.ui.theoryCombobox.currentText())
+                item3 = QTableWidgetItem(str(new_result[3]))
                 item3.setTextAlignment(QtCore.Qt.AlignCenter)
                 self.result_ui.resultTable.setItem(self.current_index, 3, item3)
                 self.current_index += 1
@@ -258,7 +277,38 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
     @pyqtSlot()
     def save_result(self):
-        print(self.result)
+        home_dir = os.getcwd()
+        open_dir = f'{home_dir}/result'
+        if not self.fname:
+            self.fname = QFileDialog.getSaveFileName(self, 'Open file', open_dir, filter='Text files (*.txt)')
+        with open(self.fname[0], 'a+') as f:
+            for measurment in self.result:
+                f.write('\n')
+                for value in measurment:
+                    f.write(f'{str(value)},')
+
+    @pyqtSlot()
+    def load_result(self):
+        result_dir = os.getcwd()
+        self.fname = QFileDialog.getOpenFileNames(self, 'Open file', result_dir, filter='Text files (*.txt)')
+        with open(self.fname[0][-1], 'r+') as f:
+            result = [value[:-1] for value in f.readlines() if value != '\n']
+            for value in result:
+                to_read = value.split(sep=',')
+                self.result.append(to_read) if len(to_read) == 4 else self.result.append(to_read[:-1])
+        self._load_to_result_table()
+
+    @pyqtSlot()
+    def new(self):
+        self.__delete_widgets_on_setting_layout()
+        self.__clear_table_on_setting_layout()
+        self.__clear_table_on_result_layout()
+
+        self.result_ui.resultTable.setColumnCount(4)
+        self.result_ui.resultTable.setHorizontalHeaderLabels(HORIZONTAL_HEADER_RESULT)
+        self.result_ui.resultTable.setRowCount(5)
+
+        self.result_ui.plotLabel.setText('Plot will be here')
 
 
 if __name__ == '__main__':
@@ -268,4 +318,4 @@ if __name__ == '__main__':
         application.show()
         sys.exit(app.exec())
     except Exception as exc:
-        print(f'Ooops, something going wrong... {exc}')
+        raise NameError(f'Ooops, something going wrong... {exc}')

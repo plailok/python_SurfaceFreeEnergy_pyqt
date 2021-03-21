@@ -67,7 +67,7 @@ class Calculation:
 
         plt.axis([min(self.x) - 2, max(self.x) + 2, min(self.y), 1 + 0.05])
         result = (1 - b) / a
-        self.result = ('Null', 'Null', result)
+        self.result = ('Null', 'Null', result, self.name)
         self.save_fig()
         plt.show()
         plt.gcf().clear()
@@ -94,7 +94,7 @@ class Calculation:
         polarity_part = a ** 2
         dispersive_part = b ** 2
         total = dispersive_part + polarity_part
-        self.result = (dispersive_part, polarity_part, total)
+        self.result = (dispersive_part, polarity_part, total, self.name)
 
         # values for making ticks in x and y axis
         xnumbers = np.linspace(0, 7, 15)
