@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from PyQt5 import QtGui, QtCore, QtWidgets
@@ -19,7 +18,6 @@ import os
 
 
 class MyWindow_v2(QtWidgets.QMainWindow):
-
     def __init__(self):
         super(MyWindow_v2, self).__init__()
         self.ui = Ui_MainWindow()
@@ -60,6 +58,7 @@ class MyWindow_v2(QtWidgets.QMainWindow):
         self.ui.actionSave_Result.triggered.connect(self.save_result)
         self.ui.actionOpenProject.triggered.connect(self.load_result)
         self.ui.actionNew.triggered.connect(self.new)
+        self.ui.actionExit.triggered.connect(self.exit)
 
         self.ui.theoryButton.setEnabled(False)
         self.ui.theoryCombobox.setEnabled(False)
@@ -310,12 +309,14 @@ class MyWindow_v2(QtWidgets.QMainWindow):
 
         self.result_ui.plotLabel.setText('Plot will be here')
 
+    @pyqtSlot()
+    def exit(self):
+        self.save_result()
+        self.close()
+
 
 if __name__ == '__main__':
-    try:
-        app = QtWidgets.QApplication([])
-        application = MyWindow_v2()
-        application.show()
-        sys.exit(app.exec())
-    except Exception as exc:
-        raise NameError(f'Ooops, something going wrong... {exc}')
+    app = QtWidgets.QApplication([])
+    application = MyWindow_v2()
+    application.show()
+    sys.exit(app.exec())

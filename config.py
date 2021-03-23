@@ -2,8 +2,8 @@ THEORY = '''https://www.ossila.com/pages/a-guide-to-surface-energy#:~:text=One%2
 Zisman%20model%2C%20published%20in%201964.&text=This%20model%20assumes%20that%20the,
 as%20the%20critical%20surface%20tension '''
 LIQUIDS = ['Water', 'Formamide', 'Ethylene Glycole', '\u03B1-bromnaphtalene']
-HORIZONTAL_HEADER_SETTING = ['Liquid', 'Polar', 'Dispersive']
-HORIZONTAL_HEADER_RESULT = ['Dispersive', 'Polar', 'Total', 'Method']
+HORIZONTAL_HEADER_SETTING = ['Liquid', '\u03C3p [mN/m]', '\u03C3d [mN/m]']
+HORIZONTAL_HEADER_RESULT = ['\u03B8d [mN/m]', '\u03C3p [mN/m]', '\u03C3total [mN/m]', 'Method']
 
 TEMPERATURE = {'Water': {'21': ('w111', 111),
                          '22': ('w222', 222),
