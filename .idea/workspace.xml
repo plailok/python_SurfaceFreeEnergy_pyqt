@@ -7,9 +7,11 @@
     <list default="true" id="3f813ea2-4732-49cd-87f1-33bc24531012" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainWindow_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result_data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/interfaces/setting_widget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces/setting_widget.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_calculation.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_calculation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2_mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/v2_mainwindow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,28 +69,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.MainWindow_v2">
-    <configuration name="MainWindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="python_SurfaceFreeEnergy_pyqt" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainWindow.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="MainWindow_v2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python_SurfaceFreeEnergy_pyqt" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -125,6 +105,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProjectHolder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dialog" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="python_SurfaceFreeEnergy_pyqt" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dialog.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -202,10 +204,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.MainWindow_v2" />
-        <item itemvalue="Python.ProjectHolder" />
         <item itemvalue="Python.main_calculation" />
+        <item itemvalue="Python.dialog" />
+        <item itemvalue="Python.ProjectHolder" />
         <item itemvalue="Python.probe" />
-        <item itemvalue="Python.MainWindow" />
       </list>
     </recent_temporary>
   </component>
@@ -258,7 +260,15 @@
       <workItem from="1616373931534" duration="14000" />
       <workItem from="1616373961070" duration="1234000" />
       <workItem from="1616447903590" duration="1248000" />
-      <workItem from="1616508691264" duration="318000" />
+      <workItem from="1616508691264" duration="446000" />
+      <workItem from="1616593805091" duration="59000" />
+      <workItem from="1616915325279" duration="4767000" />
+      <workItem from="1616921792113" duration="3640000" />
+      <workItem from="1616948330555" duration="696000" />
+      <workItem from="1617009031838" duration="34000" />
+      <workItem from="1617021469776" duration="1312000" />
+      <workItem from="1617037668066" duration="8546000" />
+      <workItem from="1617199942418" duration="6709000" />
     </task>
     <task id="LOCAL-00001" summary="add new windows">
       <created>1614845451770</created>
@@ -442,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616321355578</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="add some usefull stuff, such as units [mN/m] and sygmas instead of words">
+      <created>1616509103827</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1616509103827</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +487,8 @@
     <MESSAGE value="add config parser, add result holder" />
     <MESSAGE value="v1.01 stable (no chance to save and load result)" />
     <MESSAGE value="v1.1 stable" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1 stable" />
+    <MESSAGE value="add some usefull stuff, such as units [mN/m] and sygmas instead of words" />
+    <option name="LAST_COMMIT_MESSAGE" value="add some usefull stuff, such as units [mN/m] and sygmas instead of words" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -492,9 +510,10 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$ProjectHolder.coverage" NAME="ProjectHolder Coverage Results" MODIFIED="1616228675103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow_v2.coverage" NAME="MainWindow_v2 Coverage Results" MODIFIED="1616508994700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow_v2.coverage" NAME="MainWindow_v2 Coverage Results" MODIFIED="1617206665669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$probe.coverage" NAME="probe Coverage Results" MODIFIED="1615206713629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$main_calculation.coverage" NAME="main_calculation Coverage Results" MODIFIED="1615471832847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$main_calculation.coverage" NAME="main_calculation Coverage Results" MODIFIED="1617204153401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$dialog.coverage" NAME="dialog Coverage Results" MODIFIED="1616917445540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python_SurfaceFreeEnergy_pyqt$MainWindow.coverage" NAME="MainWindow Coverage Results" MODIFIED="1615193364342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
